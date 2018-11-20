@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+    <title>Bootstrap!</title>
+   
+  </head>
+  <style>
+   
+    @media(min-width:770px){
+      body{
+        background: grey !important;
+        }
+    }
+  .nav-item{
+    border:1px solid grey;
+    width:100%;
+    font-size:120%;
+  }
+  a{
+    color:grey;
+  }
+  a:hover{
+    color: #333;
+  }
+  .navbar-brand{
+ text-align:center;
+ width:100%;
+ font-weight:bold;
+  }
+  #nav{
+    border-right: 2px solid grey;
+     min-height: 100vh;
+     display:block;
+  }
+  #documentation{
+    position: relative;
+  }
+   
+ 
+
+  </style>
+  <body class="bg-light">
+    <main id="main-doc">
+    <div class="row">
+      <div class="col-md-4 h-100 m-0 p-0" id="nav">
+        <nav id="navbar" class=" navbar-light">
+          <header>
+          <h2 class="navbar-brand text-center">JS Documentation</h2>
+        </header>
+            <ul class="nav flex-column text-muted text-center">
+              <li class="nav-item border-right-0">
+                <a class="nav-link mx-3 my-2" href="#Introduction">Introduction</a>
+              </li>
+              <li class="nav-item border-top-0 border-right-0">
+                  <a class="nav-link mx-3 my-2" href="#Javascript_and_Java">Javascript and Java</a>
+                </li>
+                <li class="nav-item border-top-0 border-right-0">
+                    <a class="nav-link mx-3 my-2" href="#Variables">Variables</a>
+                  </li>
+                  <li class="nav-item border-top-0 border-right-0">
+                      <a class="nav-link mx-3 my-2" href="#What_you_should_already_know">What you should already know</a>
+                    </li>
+                    <li class="nav-item border-top-0 border-right-0">
+                        <a class="nav-link mx-3 my-2" href="#Hello_World">Hello World</a>
+                      </li>
+
+            </ul>
+
+        </nav>
+
+      </div>
+      <div class="col-md-8" id="documentation">
+          <div class="container">
+           
+            <section id="Introduction" class="main-section">
+              <header>
+              <h1>Introduction</h1>
+            </header>
+              <p>JavaScript is a cross-platform, object-oriented scripting language. It is a small and lightweight language. Inside a host environment (for example, a web browser), JavaScript can be connected to the objects of its environment to provide programmatic control over them.</p>
+              <p>JavaScript contains a standard library of objects, such as Array, Date, and Math, and a core set of language elements such as operators, control structures, and statements. Core JavaScript can be extended for a variety of purposes by supplementing it with additional objects; for example:
+                <ul>
+                  <li>Client-side JavaScript extends the core language by supplying objects to control a browser and its Document Object Model (DOM). For example, client-side extensions allow an application to place elements on an HTML form and respond to user events such as mouse clicks, form input, and page navigation.</li>
+                  <li>Server-side JavaScript extends the core language by supplying objects relevant to running JavaScript on a server. For example, server-side extensions allow an application to communicate with a database, provide continuity of information from one invocation to another of the application, or perform file manipulations on a server.</li>
+                </ul>
+              </p>
+            </section>
+        
+            <section id="Javascript_and_Java"  class="main-section">
+              <header>
+                <h1>Javascript and Java</h1>
+                  </header>
+                  <p>You use variables as symbolic names for values in your application. The names of variables, called identifiers, conform to certain rules.</p>
+                  <p>A JavaScript identifier must start with a letter, underscore (_), or dollar sign ($); subsequent characters can also be digits (0-9). Because JavaScript is case sensitive, letters include the characters "A" through "Z" (uppercase) and the characters "a" through "z" (lowercase).</p>
+                  <p>You can use ISO 8859-1 or Unicode letters such as å and ü in identifiers. You can also use the Unicode escape sequences as characters in identifiers. Some examples of legal names are Number_hits, temp99, and _name.</p>
+                </p>
+              </section>
+              <section id="Variables"  class="main-section">
+
+                 <header>
+                <h1>Variables</h1>
+              </header>
+                <p>You use variables as symbolic names for values in your application. The names of variables, called identifiers, conform to certain rules.</p>
+                <p>A JavaScript identifier must start with a letter, underscore (_), or dollar sign ($); subsequent characters can also be digits (0-9). Because JavaScript is case sensitive, letters include the characters "A" through "Z" (uppercase) and the characters "a" through "z" (lowercase).</p>
+                <p>You can use ISO 8859-1 or Unicode letters such as å and ü in identifiers. You can also use the Unicode escape sequences as characters in identifiers. Some examples of legal names are Number_hits, temp99, and _name.</p>
+                </section>
+                <section id="What_you_should_already_know"  class="main-section">
+                    <header>
+                        <h1>What you should already know</h1>
+                      </header>
+                        <p>This guide assumes you have the following basic background
+                          <ul>
+                            <li>A general understanding of the Internet and the World Wide Web (WWW).</li>
+                            <li>Good working knowledge of HyperText Markup Language (HTML).</li>
+                            <li>Some programming experience. If you are new to programming, try one of the tutorials linked on the main page about JavaScript.</li>
+                          </ul>
+                        </p>
+                  </section>
+                  <section id="Hello_World"  class="main-section">
+                      <header>
+                          <h1>Hello World</h1>
+                        </header>
+                          <p>To get started with writing JavaScript, open the Scratchpad and write your first "Hello world" JavaScript code:
+                            <div class="bg-dark text-white text-center">
+                              <code>function greetMe(yourName) { <br>
+                                  alert("Hello " + yourName); <br>
+                                }
+                                greetMe("World");</code>
+                                <code>function greetMe(yourName) { <br>
+                                  alert("Hello " + yourName); <br>
+                                }
+                                greetMe("World");</code>
+                                <code>function greetMe(yourName) { <br>
+                                  alert("Hello " + yourName); <br>
+                                }
+                                greetMe("World");</code>
+                                <code>function greetMe(yourName) { <br>
+                                  alert("Hello " + yourName); <br>
+                                }
+                                greetMe("World");</code>
+                                <code>function greetMe(yourName) { <br>
+                                  alert("Hello " + yourName); <br>
+                                }
+                                greetMe("World");</code>
+                            </div>
+                            Select the code in the pad and hit Ctrl+R to watch it unfold in your browser!
+                          </p>
+                    </section>
+          </div>
+        
+        </div>
+
+
+    </div>
+  </main>
+
+
+     
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous">
+    </script>
+    <script>
+  
+    </script>
+
+  </body>
+</html>
