@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+    <title>Bootstrap!</title>
+   
+  </head>
+  <style>
+    body{
+      background-color: #A9D7D1;
+    }
+   
+ 
+
+  </style>
+  <body>
+
+    <h1 id="title" class="text-center m-4">Survey Form</h1>
+    <div class="container bg-light text-center border rounded h-100">
+        <p id="description" class="pt-2">Let us know how we can improve freeCodeCamp</p>
+      <form class="form" id="survey-form">
+        <fieldset class="form-group">
+        <label id="name-label" for="name" >*Name: </label>
+        <input class=" form-control" type="text" id="name" placeholder="Enter your name" required>
+        </fieldset>
+      <fieldset class="form-group">
+        <label id="email-label" for="email" >*Email: </label>
+        <input class="form-control" type="email" id="email" placeholder="Enter your email" required>
+      </fieldset>
+      <div class="form-group">
+        <label id="number-label" for="number" >*Age: </label>
+        <input class="form-control" type="number" id="number" placeholder="Enter your age" min="10" max="90">
+      </div>
+      <fieldset class="form-group">
+        <label for="dropdown text-right" >Which option best describes your current role?: </label>
+        <select class="dropdown w-25 ml-2" id="dropdown">
+          <option value="student">Student</option>
+          <option value="student">Student</option>
+          <option value="student">Student</option>
+          <option value="student">Student</option>
+          <option value="student">Student</option>
+        </select>
+      </fieldset>
+      <fieldset class="form-group">
+        * How likely is that you would recommend freeCodeCamp to a friend?:
+        <input  type="radio" name="choice" class="ml-auto" value="1">
+        One 
+        <input  type="radio" name="choice" class="ml-auto" value="2">
+        Two 
+        <input type="radio" name="choice" class="ml-auto" value="3">
+        Three 
+
+      </fieldset>
+      <div class="form-group">
+        <label for="number" >Things that should be improved in the future
+          (Check all that apply): </label>
+        <input  type="checkbox"  class="ml-auto" value="One"> One
+        <input  type="checkbox"  class="ml-auto" value="Two"> Two
+        <input  type="checkbox"  class="ml-auto" value="Three"> Three
+
+      </div>
+      <div class="form-group">
+        <label  for="number" >Any Comments or Suggestions? </label>
+        <textarea placeholder="Place your comments here" class="w-25 "></textarea>
+
+      </div>
+      <button class="btn btn-primary btn-block m-2 mb-5" id="submit" type="submit">Submit</button>
+      </form>
+
+    </div>
+
+
+
+     
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous">
+    </script>
+    <script>
+  
+    </script>
+
+  </body>
+</html>
