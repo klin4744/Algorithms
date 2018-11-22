@@ -1,0 +1,33 @@
+Time Complexity
+
+Operators: Constant Complexity
+Loops: n complexity, based on what n is
+Nested Loops: n^#nested loops
+Primitives: Constant Complexity
+Assignments: Constant Complexity
+
+
+Space Complexity
+How much space does an algorithm take up or require
+
+Primitives: Constant
+Arrays, Objects, and Strings: Complexity is dependent on length of each -> n complexity
+
+
+Example:
+
+function sumUpToN(n){
+let sum = 0;
+for(let i=1; i<=n; i++){
+	sum += i;
+}
+return sum;
+}
+
+1 loop, 3 assignments,
+
+Time Complexity : O(n), take the biggest complexity minus the number scaling it O(5n+1) => O(n). The time it takes to complete the algo is
+proportional by some constant to the input n.
+
+Space Complexity: O(1), we only need to store a set of primitives into memory (i and sum). Again following the previous principle O(2) is
+simplified to O(1), the space complexity is independent of the number of inputs.
