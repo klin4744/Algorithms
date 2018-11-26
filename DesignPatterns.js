@@ -120,3 +120,84 @@ function betterAnagram(str1, str2) {
 // after our first iteration, we find n and subtract 1 from n in out lookup object {a:3, n:0, g:1, r:1, m:1}
 // we continue until our object is "empty" {a:0, n:0, g:0,r:0,m:0} or in otherwords when we are done looping through the second string
 // if there were another m in our second string, our for loop would see that the key m in the lookup object is already 0, this means that it is falsy! so our if statement if(!lookup[letter]) is true and will return false
+
+//    -----------    //
+// Multiple Pointers //
+//    -----------    //
+// Multiple pointers - creating pointers or values that correspond to an index or position and move towards the beginning, end or middle based on a certain condition
+// -> this is really good for solving problems with minimal space complexity
+// Example, have an ordered list (array or string)
+// [-4,-3,-2,-1,0,1,2,5]
+// "j9fuh9frugherugeji"
+// there are two pointers/ variables that point to a position in the string or array
+
+//Example
+// Write a function called sumZero that accepts a sorted array of integers. Find the first pair where the sum is 0, return an array that includes both values that sum to zero or undefined if the pair does not exist
+// Must be sorted for this to work!
+
+// Simple solution but bad time complexity (O(N^2))
+function sumZero(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === 0) {
+        return [arr[i], arr[j]];
+      }
+    }
+  }
+}
+// this solution uses a nested loop
+
+// For multiple pointers, start two pointers, each at a different location, in this case since we have an ORDERED list, we can add a pointer to the front and one to the end and only move the pointer based on two conditions
+// [-4,-3,-2,-1,0,1,2,5]
+// In this case we set a pointer at 5 and one at -4, for our first sum, we get 1, since 1 is greater than 0 and this is an ordered list where 5 is our largest number, we just have to move our right pointer to the left one
+// now with our first pointer still at -4, and our second pointer at 2, we get -2, which is negative and tells us to move the left pointer to the right
+// we continue this pattern until we either get 0 or return undefined.
+
+// Multiple pointers solution
+
+function sumZero(arr) {
+  let left = 0;
+  let right = arr.length - 1;
+  while (left < right) {
+    let sum = arr[left] + arr[right];
+    if (sum === 0) {
+      return [arr[left], arr[right]];
+    } else if (sum > 0) {
+      right--;
+    } else {
+      left++;
+    }
+  }
+}
+
+// we have two pointers here: left and right. Left corresponds to the first item in our array (index 0), and right corresponds to the last. Using a while loop, we can assume left is always going to be smaller than right because it starts from index 0. This lets our while loop run. Inside the loop, we set condiitons to match the problem, we increment the left side if our sum is negative because we have an ordered list and the left has our smallest numbers or highest magnitude negative numbers, we increment the right side if we get a number greater than zero. The loop will stop if left passes right or if our sum equals 0, this reduces our time complexity to O(N) and our space complexity to O(1) as we create an array with only items everytime!
+
+// Time complexity O(N), Space complexity O(1)
+
+// Example two, practice
+// Implement a function called countUniqueValues, which accepts a sorted array, and counts the unique values in the array. There can be negative numbers in the array, but it will always be sorted
+
+// countUniqueValues([1,1,1,1,1,2]) // 2 -> 1 and 2
+// countUniqueValues([]) // 0 -> none
+
+function countUniqueValues(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  let pointer1 = 0;
+  let pointer2 = 1;
+  let count = 1;
+  while (pointer2 < arr.length) {
+    if (arr[pointer1] === arr[pointer2]) {
+      pointer2++;
+    } else if (arr[pointer1] !== arr[pointer2]) {
+      count++;
+      pointer1 = pointer2;
+      pointer2++;
+    }
+  }
+  return count;
+}
+// if our array isn't empty (length = 0), then set count = 1 and set the pointers to both start at the front of the array.
+// since pointer2 is ahead of pointer1, we run a while loop until pointer 2 reaches the length of the array
+// if arr[pointer1] === pointer[2], we shift pointer 2 one position right. Since we arent moving pointer1 to the right as well, this lets us check for repeated numbers as we compare consecutive numbers with pointer1. In the case that they are not equal, we add 1 to count because that means a unique value has popped up and we set pointer 1 equal to pointer 2, then add 1 to pointer 2 to move pointer 1 back next to pointer 2. This case is used because we incremented pointer 2 by itself in the case there were repeated numbers
