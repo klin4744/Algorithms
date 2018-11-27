@@ -201,3 +201,68 @@ function countUniqueValues(arr) {
 // if our array isn't empty (length = 0), then set count = 1 and set the pointers to both start at the front of the array.
 // since pointer2 is ahead of pointer1, we run a while loop until pointer 2 reaches the length of the array
 // if arr[pointer1] === pointer[2], we shift pointer 2 one position right. Since we arent moving pointer1 to the right as well, this lets us check for repeated numbers as we compare consecutive numbers with pointer1. In the case that they are not equal, we add 1 to count because that means a unique value has popped up and we set pointer 1 equal to pointer 2, then add 1 to pointer 2 to move pointer 1 back next to pointer 2. This case is used because we incremented pointer 2 by itself in the case there were repeated numbers
+
+//    -----------    //
+// Sliding Window Patten //
+//    -----------    //
+
+// The sliding window involves creating a window which can be either an array or a number from one positon to another. Depending on a certain condition, the window either increases or closes (and a new window is created). This is a great pattern for keeping track of a subset of data in an array/string.
+
+// Some problems we can solve wth this pattern
+// Finding the longest sequence of unique characters in a string
+// Usually the window will move from left to right
+
+// Example
+// Write a function called maxSubarraySum which accepts an array of integers and a number called n. The function should calculate the maximum sum of n consecutive elements in the array.
+
+// maxSubarraySum([1,2,5,2,8,1,5],2) // 10
+
+// Inefficient solution
+function maxSubarraySum(arr, num) {
+  // We cannot find a consecutive sequence of numbers that is greater than the length of the array!
+  if (num > arr.length) {
+    return null;
+  }
+  // Max is the current maximum number, if we want to include negative sums we have to set it to some very large negative number
+  let max = -Infinity;
+  // We dont want i to reach the end of the array, instead we want to leave it enoguh room so that we can add two more to our final iteration
+  // ([1,2,3,4,5,6],3)
+  // Here we want to stop at 4 because we want our second loop to add 5 and 6 or the two following numbers, if i was set to 6, we would end up adding undefined!
+  // Since i is our starter, we do not want to start at the end of the array
+  // 6-3+1 = 4, means our loop stops at index 3 which lets us consider the other two numbers in the array.
+  for (let i = 0; i < arr.length - num + 1; i++) {
+    // temp stores our sum for each loop
+    let temp = 0;
+    for (let j = 0; j < num; j++) {
+      temp += arr[i + j];
+      // if i=0, j will be equal to 0,1,2, summing those three numbers into temp and so on. We add i to j so i always serves as a starting pointer for j to add
+    }
+    // comapre temp to max and set it to max if it is larger
+    if (temp > max) {
+      max = temp;
+    }
+    return max;
+  }
+}
+// This solution is not good because it is N(O^2) complexity!
+
+// Better solution
+
+function maxSubarraySumR(arr, num) {
+  let maxSum = 0;
+  let tempSum = 0;
+  if (arr.length < num) return null;
+  for (let i = 0; i < num; i++) {
+    maxSum += arr[i];
+  }
+  tempSum = maxSum;
+  for (let i = num; i < arr.length; i++) {
+    tempSum = tempSum - arr[i - num] + arr[i];
+    maxSum = Math.max(maxSum, tempSum);
+  }
+  return maxSum;
+}
+
+// O(N) - Complexity
+// The first loop sums together our first three values and store it into a variable
+// Our next loop, subtracts the first number in the array, then adds the next array item for each iteration! we then do comparisons to see if we need to reset Math.max.
