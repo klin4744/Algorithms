@@ -266,3 +266,54 @@ function maxSubarraySumR(arr, num) {
 // O(N) - Complexity
 // The first loop sums together our first three values and store it into a variable
 // Our next loop, subtracts the first number in the array, then adds the next array item for each iteration! we then do comparisons to see if we need to reset Math.max.
+
+////////////////////////////////
+// Divide and Conquer Pattern //
+////////////////////////////////
+
+// This pattern involves dividing a data set into smaller chunks and then repeating a process with a subset of data.
+
+// This pattern can tremendously decrease time complexity
+
+// This pattern is really common
+
+// For example
+
+// Given a sorted array of integers, write a function called search, that accepts a value and returns the index where the value passed into the function is located. If the value is not found, return -1
+
+// Simple solution
+
+function search(arr, val) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === val) {
+      return i;
+    }
+    return -1;
+  }
+}
+
+// The binary search solution
+
+// array must be sorted, divide an array in half. Check the end number of the first array. Since it is sorted, we know right away that the last item in the array is it's greatest number. Ignore the entire 1st half array. Now divide the second half array again and continue. Redo this until no more numbers!
+
+function search(array, val) {
+  // Declare variables max and min which will declare the min and max indexes of the array we're currently looking at
+  let min = 0;
+  let max = array.length - 1;
+  while (min <= max) {
+    //For each while loop iteration, we have a variable called middle which divides the array in half
+    let middle = Math.floor((min + max) / 2);
+    let currentElement = array[middle];
+    //We now determine half of the array to look at by evaluating the value at the half, if it is bigger than the number we're interested, we use the first half, if it is larger, we use the second half. We continue to loop this until we end up with one value
+    if (array[middle] < val) {
+      min = middle + 1;
+    } else if (array[middle] > val) {
+      max = middle - 1;
+    } else {
+      return middle;
+    }
+    return -1;
+  }
+}
+
+// This simplifies our time complexity from O(N) to Log(N)!!!!!!!
