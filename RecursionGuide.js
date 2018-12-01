@@ -71,3 +71,5 @@ function factorialR(num) {
 
 // 1. No base case - ALL RECURSIVE FUNCTIONS NEED BASE CASES, if there is no base case a recursive function will never end. This will cause our callstack to overflow until it reaches a maximum size (~10,000 calls) resulting in an error
 // 2. Returning the wrong thing - For example returning num * factorial(num), we will never hit our base case and cause the recursion to hit the max call size. Make sure that you return something that can resolve.
+
+// If a call stack is full, we call this a Stack overflow! this happens if there is either no base case or the wrong thing is returned.
