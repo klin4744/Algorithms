@@ -56,15 +56,45 @@ function binarySearch(arr, value) {
   let middle = 0;
   let left = 0;
   let right = arr.length - 1;
-  while (left < right) {
+  while (left <= right) {
     if (arr[right] < value || arr[left] > value) return -1;
     middle = Math.ceil((left + right) / 2);
     if (arr[middle] === value) return middle;
     if (arr[middle] > value) {
-      right = middle;
+      right = middle - 1;
     } else if (arr[middle] < value) {
-      left = middle;
+      left = middle + 1;
     }
   }
   return -1;
+}
+
+// Time complexity of binary search,
+// Best case: O(1) -> if the middle of the array is what we're looking for, it only takes us one iteration!
+// Worst and average case -> O(log n)
+// For 16 elements, it takes 4 steps to 100% confirm that an element is within the ordered list/
+// For 32 elements, double the size of the previous case, worst case scenario (item not in array), it takes 5 steps!
+// log(32) = 5, log(16) = 4, everytime we double the size of our input, the time complexity only increases by one!. O(log(n)) is really good!
+
+/////////////////////////
+// Naive String Search //
+/////////////////////////
+
+// Suppose you want to count the number of times a smaller string appears in a longer string
+// A straightforward approach would be to check pairs in the string individually.
+
+// wowomgzomg, return the amount of times it matches with omg
+// first check if w matches o, it doesn't so move on, continue o index 1 of our string matches the o in omg, increment omg by one and wowomgzomg by one, w does not match the m in omg, move on. Continue until you match or not.
+
+function stringSearch(string, pattern) {
+  let matches = 0;
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === pattern[0]) {
+      for (let j = 1; j < pattern.length; j++) {
+        if (string[i + j] !== pattern[j]) break;
+        if (j === pattern.length - 1) matches++;
+      }
+    }
+  }
+  return matches;
 }
