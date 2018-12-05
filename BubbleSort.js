@@ -57,3 +57,24 @@ function bubbleSort(arr) {
 }
 
 // Optimizing bubble sort
+
+// The current problem with bubble sort is that, if the array is already close to sorted, the bubble sort will still run the total length of the array and redo the sort for the length. This will take forever for really long arrays as bubble sort will do this everytime if we do not short circuit it.
+
+// To prevent this from happening, we can set a variable to count the amount of swaps made each loop, if the swaps made were zero, we can break the loop because we will know that the sorting is completed!
+
+// Somewhat optimized code
+function optimizedBubbleSort(arr) {
+  for (let i = arr.length; i > 0; i--) {
+    let swaps = 0;
+    for (let j = 0; j < i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        swaps++;
+      }
+    }
+    if (swaps === 0) break;
+  }
+  return arr;
+}
+
+// Bubble sort is time complexity O(n^2) for the worst case, but for somewhat sorted arrays, it can be linear. Therefore, the average time complexity is O(n)
