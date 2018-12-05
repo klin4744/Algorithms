@@ -40,3 +40,7 @@ function optimizedSelectionSort(arr) {
   }
   return arr;
 }
+
+// Time complexity of selection sort is not good, we have to compare every element to every element in the array, giving us a time complexity of O(n^2). This is drastically worse than comparing one item at a time.
+
+// This is only better than bubble sort if you want to minimize the number of swaps for some reason.
