@@ -41,6 +41,10 @@ const swap = (arr, idx1, idx2) => {
 
 // Example bubble sort
 
+// Our first loop ensures that we go through the whole length of the array, we start at the end and decrememnt because, as shown above, one iteration of bubble sort will place the current maximum number to the end of the array, so we want to decrement down the length to prevent redundencies; we do not want to include the end of the array again because the end is already the current maximum number
+// The second loop does the actual comparison, it goes down the array length minus the current sorted items (aka the bigger numbers) and swaps items to sort them
+// By repeating this on the entire length, we can ensure that EVERY single number in the array is sorted. One iteration of bubble sort only guarantees that one number is in the right place!
+
 function bubbleSort(arr) {
   for (let i = arr.length; i > 0; i--) {
     for (let j = 0; j < i - 1; j++) {
@@ -51,3 +55,5 @@ function bubbleSort(arr) {
   }
   return arr;
 }
+
+// Optimizing bubble sort
