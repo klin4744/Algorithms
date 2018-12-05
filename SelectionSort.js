@@ -25,3 +25,18 @@ function selectionSort(arr) {
 }
 
 selectionSort([2, 3, 6, 7, 10, 20, 30, 99, 3]);
+
+// The above code is not optimized! The array can be sorted before the loop ends! We also have redudant swapping for when the smallest value does not change!
+
+// To fix add and if statement to check if i is equal to the smallest number
+
+function optimizedSelectionSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let smallest = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[smallest]) smallest = j;
+    }
+    if (i !== smallest) [arr[i], arr[smallest]] = [arr[smallest], arr[i]];
+  }
+  return arr;
+}
