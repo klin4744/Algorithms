@@ -39,3 +39,8 @@ function insertionSort(arr) {
 }
 
 // Note, we are using var instead of let because var has global scope and is accessible outside of our nested loop
+
+// Time complexity //
+// Worst case: O(n^2) => a reverse sorted array
+// For nearly sorted arrays, we can sort VERY quickly
+// Insertion sort can also deal with online algorithms really well. In this case we are recieving numbers constantly, because insertion sort always keeps one portion of the array sorted, the new item can be quickly integrated.
