@@ -40,3 +40,9 @@ sort([23, 45, 6, 12, 13]); // [6,12,13,23]
 // ["Steele","Colt","Data Structures", "Algorithms"].sort( (str1, str2) => str1.length - str2.length)
 
 // Continue in bubbleSort.js file!
+
+//////////////////////////////////////////////
+// Algorithm // Best // Average // Worst   //
+// Bubble    // O(n)  // O(n^2) // O(n^2)  //
+// Insertion // O(n)  // O(n^2) // O(n^2)  //
+// Selection // O(n^2) // O(n^2) // O(n^2) //
