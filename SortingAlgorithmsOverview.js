@@ -46,3 +46,7 @@ sort([23, 45, 6, 12, 13]); // [6,12,13,23]
 // Bubble    // O(n)  // O(n^2) // O(n^2)  //
 // Insertion // O(n)  // O(n^2) // O(n^2)  //
 // Selection // O(n^2) // O(n^2) // O(n^2) //
+/////////////////////////////////////////////
+
+// Each has O(1) space complexity !
+// Can be better on small data sets
