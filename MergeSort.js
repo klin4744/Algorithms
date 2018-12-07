@@ -42,6 +42,12 @@
 // If the value in the first array is smaller than the value in the second array, push the value in the first array into our results and move on to the next value in the first array
 // If the value in the first array is larger than the value in the second array, push the value in the second array into our results and move on to the next value in the second array
 // Once we exhaust one array, push in all the remaining values from the other array
+
+// pointer1 points at arr1, it lets us know if we used an element in arr1. Similarly, pointer2 points at arr2 and lets us know if we used an element in arr2
+// emptyArr is the combined arr we will return
+// The while loop will run until every single element of arr1 and arr2 is placed within the emptyArr we initialized, so it will run as long as our emptyArr length isnt equal to the sum of the lengths of our two arrays
+// If our arr1[pointer1] is less than arr2[pointer2] we want to push arr1[pointer1] to our empty array then increment pointer 1, this way we can tell our algorithm that one element of arr1 has been used up! The same is for the other pointer
+// If either pointer reaches its array length, we will know that there are no items left to push from that array, so we instead push the remaining items in the other array.
 function merge(arr1, arr2) {
   let emptyArr = [];
   let pointer1 = 0;
@@ -64,3 +70,57 @@ function merge(arr1, arr2) {
   }
   return emptyArr;
 }
+// THIS WILL NOT WORK IF EITHER ARRAY ISNT SORTED!
+
+//Another example with three loops
+function merge2(arr1, arr2) {
+  let emptyArr = [];
+  let pointer1 = 0;
+  let pointer2 = 0;
+  while (pointer1 < arr1.length && pointer2 < arr2.length) {
+    console.log(pointer1, pointer2);
+    if (arr1[pointer1] < arr2[pointer2]) {
+      emptyArr.push(arr1[pointer1]);
+      pointer1++;
+    } else {
+      emptyArr.push(arr2[pointer2]);
+      pointer2++;
+    }
+  }
+  while (pointer1 < arr1.length) {
+    emptyArr.push(arr1[pointer1]);
+    pointer1++;
+  }
+  while (pointer2 < arr2.length) {
+    emptyArr.push(arr2[pointer2]);
+    pointer2++;
+  }
+  return emptyArr;
+}
+
+// mergeSort Pseudocode
+// Break up the array into halves until you have arrays that are empty or have one element
+// call mergesort on the array again
+// base case, when arrs are length 0 or 1.
+// one we have smaller sorted arrays, merge them with other sorted arrays until it is sorted!
+
+function mergeSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+
+// How does this work?
+// Example mergeSort([10,24,76,73])
+// Code executes
+// Mid point is calculated
+// Left assign gets ran and calls the recursive function mergeSort
+// For our first iteration, we passed [10,24] so we bypass the if statement and once again calculate the midpoint and mergesort once again
+// This time we pass in [10] to mergeSort so our base case makes us return a value
+// now our left recursion call that was waiting on stack revieves the [10] and continues down the line BACK to the mergeSort call with the inputs ([10,24]), right now runs and returns [24] and finally we merge left and right to return [10,24] which pop off the stack.
+// Now for our second call which was waiting the whole time for left to return something, moves down to right. Right follows the same procedure as let and returns [73,76]
+// Finally we once again merge these two sorted arrays and get [10,24,73,76]
