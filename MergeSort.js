@@ -124,3 +124,21 @@ function mergeSort(arr) {
 // now our left recursion call that was waiting on stack revieves the [10] and continues down the line BACK to the mergeSort call with the inputs ([10,24]), right now runs and returns [24] and finally we merge left and right to return [10,24] which pop off the stack.
 // Now for our second call which was waiting the whole time for left to return something, moves down to right. Right follows the same procedure as let and returns [73,76]
 // Finally we once again merge these two sorted arrays and get [10,24,73,76]
+
+//Big O Complexity
+// Time Complexity
+// (best) = O(nlogn)
+// (average) = O(nlogn)
+// (worst) = O(nlogn)
+// Space Complexity = O(n)
+
+// Example - if we had 32 items
+// 16 16
+// 8 8 8 8
+// 4 4 4 4 4 4 4 4
+// 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+// 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+// 5 total times we split
+// 2^5 = 32, so current complexity is log(n)
+// However, when we merge back we have O(n) comparisons, if we have 1000 array elements, 1000 comparisons must be made to recompose our array
+// Thus general time complexity is nlogn
