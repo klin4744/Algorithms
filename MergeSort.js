@@ -142,3 +142,5 @@ function mergeSort(arr) {
 // 2^5 = 32, so current complexity is log(n)
 // However, when we merge back we have O(n) comparisons, if we have 1000 array elements, 1000 comparisons must be made to recompose our array
 // Thus general time complexity is nlogn
+
+// Keep in mind, if we care about space, mergeSort is not too great!
