@@ -20,3 +20,10 @@
 // next do the right side [7,6,8], when we test 7, we find that 7 must be the 6th element so [6,7,8]
 
 // View this on Visualgo!
+
+// Pseudocode
+
+// Part 1 - Pivot/Partition Helper //
+// Given an array, this helper function should designate an element as the pivot
+// It should then rearrange elements in the arrays so that all values less than the pivot are moved to the left of the pivot, and all values greater than the pivot are moved to the right of the pivot.
+// The order of elements on either side of the pivot doesn't matter!
