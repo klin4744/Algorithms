@@ -27,3 +27,39 @@
 // Given an array, this helper function should designate an element as the pivot
 // It should then rearrange elements in the arrays so that all values less than the pivot are moved to the left of the pivot, and all values greater than the pivot are moved to the right of the pivot.
 // The order of elements on either side of the pivot doesn't matter!
+// The helper should do this in place, that is, it should not create a new array
+// When complete, the helper should return the index of the pivot
+
+// Choosing a pivot
+// The runtime of quick sort depends in part on how one selects the pivot
+// Ideally, the pivot should be chosen so that it's rougly the median value in the data set you're sorting
+// For simplicity, we'll always choose the pivot to be the first function
+
+// Example
+// pivot([5,2,1,8,4,7,6,3]) //4
+// The first value, 5 should be in index 4!
+// Any of these mutations are acceptable:
+// [2,1,4,3,5,8,7,6]
+// [1,4,3,2,5,7,6,8]
+// [3,2,1,4,5,7,6,8]
+// [4,1,2,3,5,6,8,7]
+
+// Attempt
+function pivot(arr) {
+  let start = arr[0];
+  let index = 0;
+  let lastLargestIndex = 0;
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < start) {
+      if (arr[i - 1] > start) {
+        [arr[lastLargestIndex], arr[i]] = [arr[i], arr[lastLargestIndex]];
+      }
+      index++;
+    }
+    if (arr[i] > start && arr[i - 1] < start) {
+      lastLargestIndex = i;
+    }
+  }
+  [arr[0], arr[index]] = [arr[index], arr[0]];
+  return index;
+}
