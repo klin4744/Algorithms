@@ -68,17 +68,47 @@ function pivot(arr) {
 function pivot(arr, start = 0, end = arr.length + 1) {
   let pivot = arr[start];
   let swpIdx = start;
-  for (let i = start + 1; i < arr.length; i++) {
+  for (let i = start + 1; i <= end; i++) {
     if (pivot > arr[i]) {
       swpIdx++;
       [arr[swpIdx], arr[i]] = [arr[i], arr[swpIdx]];
     }
   }
-  [pivot, arr[swpIdx]] = [arr[swpIdx], pivot];
-  return swapIdx;
+  [arr[start], arr[swpIdx]] = [arr[swpIdx], arr[start]];
+  return swpIdx;
 }
 
 // How does this work?
 // [4,8,2,1,5,7,6,3]
 // For our first iteration, 8 is not less than 4
 // 2nd iteration 2 is less than 4, so swap index becomes 1, now we swap 1 with the item at the item at arr[swpIndex], since swpInd counts how many elements are less than our pivot, the things greater than 4 will always be pushed out to the right of the array
+
+// Quicksort Pseudocode
+// Call the pivot helper on the array
+// Recursively call the quick sort again on both the left and the right of the pivot
+// for example, for the array [4,6,9,1,2,5,3]
+// We start by calling pivot on our array, this rearranges the initial array and gives us the index of the first element (4)
+// Now we have [3,1,2,4,6,9,5]
+// Now we recursively call quicksort on the left and the right halves of the array, the middle is the index returned by our first pivot
+// lefthalf = quickSort(0,4 - 1)
+// righthalf = quicksort(4 + 1,arr.length-1)
+// so we have a series
+// [3,2,1]  and [6,9,5]
+// [1,2,3]  and [5,6,9]
+// [1,2]  and [5] and [9] are called
+// on completion we have the indexes for:
+// [1,2,3,4,5,6,9]
+// We set the base case to stop it from running it the array lengths are 0 or 1, (sub array length since we do not want to mutate the old array)
+// We return the m
+// Keep in mind the left side of the array will form first
+// Also keep in mind that the array thats inserted will be mutated, do not make a new array
+
+//Attempt
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = pivot(arr, left, right);
+    quickSort(arr, left, pivotIndex - 1);
+    quickSort(arr, pivotIndex + 1, right);
+  }
+  return arr;
+}
