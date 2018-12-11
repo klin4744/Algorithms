@@ -157,3 +157,10 @@ function radixSort(arr) {
   }
   return arr;
 }
+
+// Radix sort Big O
+
+// Time Complexity for Best, Average, and Worst
+// O(nk)   n=> length of array    k = number of digits (average)
+// If all the numbers are distinct/unique, k has to atleast be log n, which is the same as comparison sort because of how computers store information
+// Theoretically, radix sort is faster than comparison sorts, but there are arugments that it is just as fast.
