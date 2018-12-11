@@ -133,3 +133,27 @@ function mostDigits(arr) {
   }
   return total;
 }
+
+// Radix Sort Pseudocode
+// Define a function that accepts a list of numbers
+// Figure out how many digits the largest number has
+// loop from i=0 up to this largest number of digits
+// For each iteration of the loop:
+// Create buckets for each digit (0 to 9)
+// Place each number in the corresponding bucket based on its ith digit
+// Replace our existing array with values in our buckets, starting with 0 and going up to 9
+// return list at the end!
+
+// Attempt
+function radixSort(arr) {
+  for (let i = 0; i < mostDigits(arr); i++) {
+    //Create buckets
+    let digitBuckets = Array.from({ length: 10 }, () => []);
+    // Creates 10 empty sub arrays within an array
+    for (let j = 0; j < arr.length; j++) {
+      digitBuckets[getDigit(arr[j], i)].push(arr[j]);
+    }
+    arr = [].concat(...digitBuckets);
+  }
+  return arr;
+}
