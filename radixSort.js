@@ -83,3 +83,29 @@
 // Reform one last time
 // Take order already in buckets
 // [4,7,29,408,593,902,1556,3556,4386,8157,9637]
+
+/////////////////////
+// Helper methods //
+///////////////////
+
+// First helper getDigit(num,place) - returns the digit in num at the given place value
+
+// Example getDigit(12345,0);// 5
+// We will go the other direction in this case, for radix sort. Reverse indexing.
+
+function getDigit(num, place) {
+  return parseInt(num.toString()[num.toString().length - 1 - place]);
+}
+
+// Second solution
+function getDigit(num, i) {
+  return Math.floor((Math.abs(num) / Math.pow(10, i)) % 10);
+}
+// Example 7323,2
+// Take the number and divide by 10^i, in this case divide by 10^2 or 100
+// 73.23
+// Math.floor it  => 73
+// Then return the remainder after dividing by by
+// 73 & 10 => 3
+
+//
