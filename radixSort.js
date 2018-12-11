@@ -49,3 +49,37 @@
 // 7:
 // 8: 86, 4386
 // 9: 593
+
+// For items without a number to the second right, we declare the number as a 0 in that position and group it in 0
+
+// Reform again
+// [902,4,7,408,29,9637,1556,3556,8157,4386,86,593]
+// Repeat again for third digit
+// 0: 4,7,29,86
+// 1: 8157
+// 2:
+// 3: 4386
+// 4: 408
+// 5: 593, 3556, 1556
+// 6: 9637
+// 7:
+// 8:
+// 9: 902
+
+// Reform again and do again (we have to repeat for as many integers that our longest number has, in this case 4 times)
+// [4,7,29,86,8157,4386,408,1556,3556,593,9637,902]
+// Repeat for 4th digit now
+// 0: 4,7,29,408,593,902
+// 1: 1556
+// 2:
+// 3: 3556
+// 4: 4386
+// 5:
+// 6:
+// 7:
+// 8: 8157
+// 9: 9637
+
+// Reform one last time
+// Take order already in buckets
+// [4,7,29,408,593,902,1556,3556,4386,8157,9637]
