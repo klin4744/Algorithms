@@ -93,7 +93,7 @@
 // Example getDigit(12345,0);// 5
 // We will go the other direction in this case, for radix sort. Reverse indexing.
 
-function getDigit(num, place) {
+function getDigit1(num, place) {
   return parseInt(num.toString()[num.toString().length - 1 - place]);
 }
 
@@ -108,4 +108,28 @@ function getDigit(num, i) {
 // Then return the remainder after dividing by by
 // 73 & 10 => 3
 
-//
+// Second helper will give us the number of digits in the given number
+// digitCount(num)
+// digitCount(1234) = 4
+function digitCount1(num) {
+  return num.toString().length;
+}
+
+// Or with math
+function digitCount(num) {
+  if (num === 0) return 1;
+  return Math.floor(Math.log10(Math.abs(num)) + 1);
+}
+// in this solution we just find the log base 10 of a number then add 1 to it
+
+// Last method
+// mostDigits, given an array of numbers, returns the number of digits in the largest numbers in the list
+// mostDigits([1234,4,5])  // 4
+// Use digit count
+function mostDigits(arr) {
+  let total = -Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    total = Math.max(total, digitCount(arr[i]));
+  }
+  return total;
+}
