@@ -88,9 +88,37 @@ class Student {
     });
     return sum / this.scores.length;
   }
+  static EnrollStudents() {
+    return "Enrolling Students";
+  }
+  // EnrollStudents CANNOT be called by instances of Student, it is completely irrelevant for the instances. It can only be called by the class itself via Student.EnrollStudents();
 }
 // The method returns a different value for each different instance of Student. These methods work on individual instances of the class!
 
 // Array.pop(), has to pop from ONE instance of an array
 
 // In our example firstStudent.markLate() acts on the instance of student called firstStudent and modifies its individual properties! It is an Instance Method!
+
+// Class Methods
+// You define a class method by declaring the method with the keyword static in front of it. Static methods are methods for the class but not necessarily for just the instances of the class.
+// These methods are very uncommon, They cannot be called by a class instance. It is more like a utility function, you do not used data from the instance.
+
+// Look above for example
+
+// Example 2
+// From MDN
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  static distance(a, b) {
+    const dx = a.x - b.y;
+    const dy = a.y - b.y;
+    return Math.hypot(dx, dy);
+  }
+}
+const p1 = new Point(5, 5);
+const p2 = new Point(10, 10);
+Point.distance(p1, p2);
+// distance cannot be called by p1 or p2, Point in a way does things with the instances it created with its static methods. The instances itself do not necessarily need the method. We see these for old methods like Math.floor() which rounds an number passed into it
