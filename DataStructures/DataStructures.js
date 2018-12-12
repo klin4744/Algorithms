@@ -122,3 +122,5 @@ const p1 = new Point(5, 5);
 const p2 = new Point(10, 10);
 Point.distance(p1, p2);
 // distance cannot be called by p1 or p2, Point in a way does things with the instances it created with its static methods. The instances itself do not necessarily need the method. We see these for old methods like Math.floor() which rounds an number passed into it
+
+// Inside all of our instance methods and constructor, the keyword "this" refers to the object created from that class (also known as an instance of the class)
