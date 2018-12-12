@@ -52,3 +52,45 @@ class Student {
 }
 // Instantiating new classes
 let firstStudent = new Student("Colt", "Steele"); // Our input matches our constructor properties
+// firstStudent.firstName = "Colt";
+
+// In this situation where this is inside an instance method such as a constructor method, this refers to the current instance of the class object. For example, this of firstStudent refers directly to the firstStudent object created by class.
+
+// Defining methods in our classes //
+// Instance Methods //
+// Instance Methods are methods that provide functionality that pertains directly to our current instance, for example:
+// The data.push() method is a instance method that mutates the array instance that calls push.
+// Another example:
+class Student {
+  constructor(firstName, lastName) {
+    // Inside the constructor we place properties of the class, when we create new student in the future, we pass in firstName and lastName into our class
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.tardies = 0;
+    this.scores = [];
+  }
+  fullName() {
+    return `Your fullname is ${this.firstName} ${this.lastName}`;
+  }
+  markLate() {
+    this.tardies += 1;
+    `${this.firstName} ${this.lastName} has been late ${this.tardies} times`;
+  }
+  // Instance method with an input
+  // Called by firstStudent.addScore(86)
+  addScore(score) {
+    this.scores.push(score);
+    return this.scores;
+  }
+  calculateAverage() {
+    let sum = this.scores.reduce(function(a, b) {
+      return a + b;
+    });
+    return sum / this.scores.length;
+  }
+}
+// The method returns a different value for each different instance of Student. These methods work on individual instances of the class!
+
+// Array.pop(), has to pop from ONE instance of an array
+
+// In our example firstStudent.markLate() acts on the instance of student called firstStudent and modifies its individual properties! It is an Instance Method!
