@@ -30,5 +30,25 @@
 // Use a tree!
 
 // Task scheduler aka choose which tasks to prioritize
-// Use a binary heap
+// Use a binary heap!
 ////////////////////////////////////////////////////
+
+// ES2016 Class Syntax Overview //
+
+// Javascript doesn't come with any of the datastructures we will implement, we will therefore use the class keyword to create datastructures.
+
+// What is a class?
+// A class is a blueprint for creating objects with pre-defined properties and methods.
+// We can then use this blueprint to create instances of that class as new objects.
+// Javascript does not really have classes, class syntax in ES6 is entirely based on prototypal-inheritance
+
+// The Syntax
+class Student {
+  constructor(firstName, lastName) {
+    // Inside the constructor we place properties of the class, when we create new student in the future, we pass in firstName and lastName into our class
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+}
+// Instantiating new classes
+let firstStudent = new Student("Colt", "Steele"); // Our input matches our constructor properties
