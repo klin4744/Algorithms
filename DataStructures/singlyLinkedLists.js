@@ -36,3 +36,42 @@
 // Indexed in order!
 // Insertion and deletion can be expensive
 // Can quickly be accessed at a specific index
+
+// Creating our singly-linked list
+
+// Creating our Node
+// Piece of data - val
+// Reference to next node - next
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+}
+// One way to add elements to our list
+let first = new Node("Hi");
+first.next = new Node("there");
+first.next.next = new Node("how");
+
+// Defining the linked list class
+class SinglyLinkedList {
+  constructor() {
+    this.length = 0;
+    this.head = null;
+    this.tail = null;
+  }
+  push(val) {
+    if (!this.head) {
+      this.head = new Node(val);
+      this.tail = this.head;
+    } else {
+      this.tail.next = new Node(val);
+      // Sets the current tail's next pointer to the new node
+      this.tail = new Node(val);
+      // Moves the tail pointer to the new node
+    }
+    this.length++;
+    return this;
+  }
+}
+let list = new SinglyLinkedList();
