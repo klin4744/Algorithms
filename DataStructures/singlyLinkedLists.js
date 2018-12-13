@@ -73,5 +73,24 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+  pop() {
+    // Removes an item from the end of the linked list
+    // We do not have a backwards pointer, so we cant just take off the last item, we'd have to start from the first item and move to the second to last item, and make that item our tail
+    if (!this.head) return;
+    let prev = null;
+    let current = this.head;
+    while (current.next) {
+      prev = current;
+      current = current.next;
+    }
+    this.tail = prev;
+    this.tail.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return current;
+  }
 }
 let list = new SinglyLinkedList();
