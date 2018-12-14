@@ -92,5 +92,28 @@ class SinglyLinkedList {
     }
     return current;
   }
+  // Shifting, remove a new node from the begining of the Linked List
+  shift() {
+    if (!this.head) return;
+    let prev = this.head;
+    let newHead = prev.next;
+    this.head = newHead;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+    }
+    return prev;
+  }
+  // Unshifting, adds a new node to the beginning of the Linked list
+  unshift(val) {
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    }
+    newNode.next = this.head;
+    this.head = newNode;
+    return this;
+  }
 }
 let list = new SinglyLinkedList();
