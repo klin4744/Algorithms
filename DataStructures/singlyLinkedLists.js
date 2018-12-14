@@ -61,13 +61,14 @@ class SinglyLinkedList {
     this.tail = null;
   }
   push(val) {
+    let newNode = new Node(val);
     if (!this.head) {
-      this.head = new Node(val);
+      this.head = newNode;
       this.tail = this.head;
     } else {
-      this.tail.next = new Node(val);
+      this.tail.next = newNode;
       // Sets the current tail's next pointer to the new node
-      this.tail = new Node(val);
+      this.tail = newNode;
       // Moves the tail pointer to the new node
     }
     this.length++;
@@ -116,6 +117,15 @@ class SinglyLinkedList {
     }
     this.length++;
     return this;
+  }
+  // Get, retrieves a node by it's position in the linked list!
+  get(index) {
+    if (this.length <= index || index < 0) return;
+    let current = this.head;
+    for (let i = 0; i < index; i++) {
+      current = current.next;
+    }
+    return current;
   }
 }
 let list = new SinglyLinkedList();
