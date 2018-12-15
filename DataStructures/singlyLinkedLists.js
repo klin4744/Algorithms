@@ -209,3 +209,11 @@ class SinglyLinkedList {
   }
 }
 let list = new SinglyLinkedList();
+
+// Big O of Singly Linked Lists
+// Insertion - O(1) complexity  -> for arrays, the average is O(N)
+// Removal - Can be O(1) or O(N) -> if we remove from begining, it's O(1), If we remove from end, we have to traverse the entire list (O(N)).
+// Searching - O(N) -> Worst case is O(N) where the item is at the end
+// Access - O(N) -> Getting a certain node out is the same as searching condiitons, Arrays in comparison can access in constant time O(1) after they have already been indexed
+
+// Singly linked list win in insertion and deletion over arrays
