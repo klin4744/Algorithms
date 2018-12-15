@@ -178,6 +178,34 @@ class SinglyLinkedList {
     this.length--;
     return removed;
   }
-  // Reverse, reverses the linked list in place
+  // Reverse, reverses the linked list in place. Very common challenge. You cannot make a copy of the list, you must traverse and reverse
+  // Start at the begining, set the head to the tail, then set the next variables next value to the head, then continue down
+  // Example : 13 => 27 => 32
+  // Set 13 to tail and 32 to head
+  // We have to define a current node, we call this node and start it at the head
+  // we define a next and a previous, previous must be initialized to null
+  // In our loop, we loop through the length of the singly linked list
+  // First, we set the next to node.next, in our first iteration, we start at our oldHead (13) which has the next property pointing to node 27, so our next variable points to 27
+  // Now we set the .next node equal to previous, since we are starting at our 13 node, we conviently are able to set 13's next (our old head and now new tail), to null, so it isnt pointing at anything
+  // Finally we want to shift one unit to the right, we first set the previous variable to the node we are currently on, then set the node to next
+  reverse() {
+    // First swap the head and the tail, Since we don't want to lose either value, make sure to save them to variables
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let next;
+    let prev = null; // Need to make sure the tail is null, so we set prev to a value here
+    // Start our loop
+    for (let i = 0; i < this.length; i++) {
+      next = node.next; // Set node to the next value of what we are currently looking at
+      node.next = prev; // Set the .next value of our node to our previous value
+      // Now shift everything to the right
+      // Set the previous value to the node we were looking at
+      prev = node;
+      // Set the current to the next value
+      node = next;
+    }
+    return this;
+  }
 }
 let list = new SinglyLinkedList();
