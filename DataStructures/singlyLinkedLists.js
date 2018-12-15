@@ -127,5 +127,57 @@ class SinglyLinkedList {
     }
     return current;
   }
+  // Set, accepts a positon (index) and a value and will update that positon with the pushed value
+  set(index, value) {
+    // We can also, for readablity, set this.get(index) to a variable, remember get will not create a new value, it gives us a REFERENCE to the node! Any edits made to the node will edit our list!
+    if (this.get(index)) {
+      this.get(index).val = value;
+      return true;
+    } else {
+      return false;
+    }
+  }
+  // Insert, adds a node to the linked list at a specified posiiton
+  insert(index, value) {
+    if (index === 0) {
+      this.unshift(value); // you can condense this with return !!this.unshift(value), since this.unshift runs ! is false, !! is true
+      return true;
+    } else if (index === this.length) {
+      this.push(value);
+      return true;
+    } else if (index < 0 || index > this.length) {
+      return false;
+    } else {
+      // Find the node right before where we want to insert
+      let previousNode = this.get(index - 1);
+      // Also find the node AT where we want to insert
+      let findNode = this.get(index); // We can also set this to previousNode.next
+      // Create the new node
+      let newNode = new Node(value);
+      // Set the next property of our previous node to our new node
+      previousNode.next = newNode;
+      // Finally set the next property of our new node to our previous item at the insert index
+      newNode.next = findNode;
+      // Since we added an item, increment the length
+      this.length++;
+      return true;
+    }
+  }
+  // Remove, removes a node from the linked list at a specific position
+  remove(index) {
+    if (index === 0) return !!this.shift();
+    if (index === this.length) return !!this.pop();
+    if (index < 0 || index > this.length) return false;
+    // Find the node right before where we want to insert
+    let previousNode = this.get(index - 1);
+    let removed = previousNode.next;
+    // Find the node right after where we want to remove
+    let nextNode = this.get(index + 1); // We can also set this to previousNode.next
+    previousNode.next = nextNode;
+    // remove from the length
+    this.length--;
+    return removed;
+  }
+  // Reverse, reverses the linked list in place
 }
 let list = new SinglyLinkedList();
