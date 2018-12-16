@@ -62,8 +62,10 @@ class DoublyLinkedList {
       secondToLast.next = null;
       // Set the tail to be the second to last item;
       this.tail = secondToLast;
-      // Decrement length and return the popped item
     }
+    // The oldTail will still have a previous reference since we have yet to remove it, so we must set its previous reference to null or it'll still be linked to our list
+    oldTail.prev = null;
+    // Decrement length and return the popped item
     this.length--;
     return oldTail;
   }
