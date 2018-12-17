@@ -123,4 +123,11 @@ class DoublyLinkedList {
     // Return the node asked for
     return current;
   }
+  // Set takes an index and a piece of data to update a node at an index with the passed in piece of data
+  set(index, value) {
+    let nodeToChange = this.get(index);
+    if (!nodeToChange) return false;
+    nodeToChange.val = value;
+    return true;
+  }
 }
