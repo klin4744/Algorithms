@@ -98,4 +98,29 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  // Get accesses a node in a list by its position
+  get(index) {
+    // Check edge cases first
+    if (index < 0 || index >= this.length) return;
+    // We will check if our index is greater than half of our length, if it is, this means it is faster to start from the end of our list. If not, it means it is faster to start from the begining
+    let half = this.length / 2;
+    // Initialize a current variable which will store node iterations
+    let current;
+    if (index > half) {
+      // Since index is greater than our halfway point, we should start at the tail since our node of interest is closer to the end
+      current = this.tail;
+      // Decrement and set current to the prev value
+      for (let i = this.length; i > this.length - index; i--) {
+        current = current.prev;
+      }
+    } else {
+      // Otherwise if index is less than or equal to our halfway point, we can simply start at the head and set current to current.next
+      current = this.head;
+      for (let i = 0; i < index; i++) {
+        current = current.next;
+      }
+    }
+    // Return the node asked for
+    return current;
+  }
 }
