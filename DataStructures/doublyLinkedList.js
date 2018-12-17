@@ -110,7 +110,7 @@ class DoublyLinkedList {
       // Since index is greater than our halfway point, we should start at the tail since our node of interest is closer to the end
       current = this.tail;
       // Decrement and set current to the prev value
-      for (let i = this.length; i > this.length - index; i--) {
+      for (let i = this.length - 1; i > index; i--) {
         current = current.prev;
       }
     } else {
