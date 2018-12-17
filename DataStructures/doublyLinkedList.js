@@ -132,16 +132,9 @@ class DoublyLinkedList {
   }
   // Insert, adds a node to our list given an index
   insert(index, value) {
-    if (index === 0) {
-      this.unshift(value);
-      this.length++;
-      return true;
-    }
-    if (index === this.length - 1) {
-      this.push(value);
-      this.length++;
-      return true;
-    }
+    if (index === 0) return !!this.unshift(value);
+    if (index === this.length - 1) return !!this.push(value);
+
     let prevNode = this.get(index - 1);
     if (!prevNode) return false;
     let newNode = new Node(value);
