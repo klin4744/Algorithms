@@ -130,4 +130,27 @@ class DoublyLinkedList {
     nodeToChange.val = value;
     return true;
   }
+  // Insert, adds a node to our list given an index
+  insert(index, value) {
+    if (index === 0) {
+      this.unshift(value);
+      this.length++;
+      return true;
+    }
+    if (index === this.length - 1) {
+      this.push(value);
+      this.length++;
+      return true;
+    }
+    let prevNode = this.get(index - 1);
+    if (!prevNode) return false;
+    let newNode = new Node(value);
+    let nextNode = prevNode.next;
+    // Set the previous property of the node after the previous node equal to our new node.
+    newNode.next = nextNode;
+    nextNode.prev = newNode;
+    prevNode.next = newNode;
+    this.length++;
+    return true;
+  }
 }
