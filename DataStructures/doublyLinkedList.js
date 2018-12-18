@@ -149,12 +149,13 @@ class DoublyLinkedList {
   // Remove takes an index in a doubly linked list and removes that item from the list
   remove(index) {
     // First take care of edge cases
-    if (index === 0) return !!this.unshift();
-    if (index === this.length - 1) return !!this.pop();
+    if (index < 0 || index > this.length - 1) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
     // Grab the node we want to remove
     let nodeToRemove = this.get(index);
-    // If we don't get anything, return false
-    if (!nodeToRemove) return false;
+    // If we don't get anything, return nothing
+    if (!nodeToRemove) return;
     // Find the node before the node we want to remove
     let nodeBefore = nodeToRemove.prev;
     // Find the node after the node we want to remove
@@ -166,6 +167,17 @@ class DoublyLinkedList {
     // We have to dettach the node from the list by removing its next and prev values;
     nodeToRemove.next = null;
     nodeToRemove.prev = null;
-    return true, nodeToRemove;
+    return nodeToRemove;
   }
 }
+
+// Singly Linked vs Doubly Linked List
+// Insertion - O(1) - same as singly
+// Removal - O(1) - faster than singly
+// Searching - O(N) - typically O(N/2) but we still consider that as O(N)
+// Access - O(N)
+
+// Recap
+// Doubly linked list is basically a singly linked list with an additional pointer to previous nodes
+// Browser history is usually done using doubly linked list!
+// Doubly linked list takes up more memory due to extra pointer but is faster and easier to navigate than singly linked lists.
