@@ -146,4 +146,26 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+  // Remove takes an index in a doubly linked list and removes that item from the list
+  remove(index) {
+    // First take care of edge cases
+    if (index === 0) return !!this.unshift();
+    if (index === this.length - 1) return !!this.pop();
+    // Grab the node we want to remove
+    let nodeToRemove = this.get(index);
+    // If we don't get anything, return false
+    if (!nodeToRemove) return false;
+    // Find the node before the node we want to remove
+    let nodeBefore = nodeToRemove.prev;
+    // Find the node after the node we want to remove
+    let nodeAfter = nodeToRemove.next;
+    // Link the before and after nodes to each other
+    nodeBefore.next = nodeAfter;
+    nodeAfter.prev = nodeBefore;
+
+    // We have to dettach the node from the list by removing its next and prev values;
+    nodeToRemove.next = null;
+    nodeToRemove.prev = null;
+    return true, nodeToRemove;
+  }
 }
