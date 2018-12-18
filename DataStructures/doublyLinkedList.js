@@ -167,7 +167,22 @@ class DoublyLinkedList {
     // We have to dettach the node from the list by removing its next and prev values;
     nodeToRemove.next = null;
     nodeToRemove.prev = null;
+    this.length--;
     return nodeToRemove;
+  }
+  reverse() {
+    // First set head to tail, store one in a variable so we dont completely overwrite
+    let oldHead = this.head;
+    this.head = this.tail;
+    this.tail = oldHead;
+    let currentNode = this.head;
+    for (let i = 0; i < this.length; i++) {
+      let next = currentNode.next;
+      currentNode.next = currentNode.prev;
+      currentNode.prev = next;
+      currentNode = currentNode.next;
+    }
+    return this;
   }
 }
 
