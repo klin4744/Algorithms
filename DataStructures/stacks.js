@@ -39,3 +39,46 @@ stack.shift();
 // In either ways, the first thing in is the last thing out of the array, in this case due to how arrays work with indexing, push + pop combo is much more effiicent than shift and unshift!
 
 // It is worth noting that if you want to be efficent, you will likely not used an array, rather you will use a linked list
+
+// Singly linked list implementation
+
+// First create node
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+// WIth singly linked list, you will want to actually use shift and unshift instead of push and pop
+class Stack {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.length = 0;
+  }
+  push(val) {
+    let newNode = new Node(val);
+    if (!this.first) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      let temp = this.first;
+      this.first = newNode;
+      this.first.next = temp;
+    }
+    return ++this.length;
+  }
+  pop() {
+    let oldFirst = this.first;
+    if (!this.first) return null;
+    if (this.length === 1) {
+      this.first = null;
+      this.last = null;
+    } else {
+      let newFirst = this.first.next;
+      this.first.next = null;
+      this.first = newFirst;
+    }
+    return oldFirst;
+  }
+}
