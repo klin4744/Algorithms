@@ -182,3 +182,9 @@ class Queue {
 }
 
 // Code is nearly identical to the code for stack!
+
+// Big O
+// Insertion - O(1)
+// Removal - O(1)
+// Searching - O(N)
+// Access - O(N)
