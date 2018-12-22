@@ -94,4 +94,24 @@ class BinarySearchTree {
   constructor() {
     this.root = null;
   }
+  // Insert places a new node into our binary search treee
+  insert(value) {
+    // Create a new node with the value passed
+    let newNode = new Node(value);
+    // Check edge case (if tree is empty)
+    if (!this.root) {
+      this.root = newNode;
+    } else {
+      let previous = this.root;
+      while (previous) {
+        if (newNode.value > value) {
+          previous = previous.left;
+        } else {
+          previous = previous.right;
+        }
+      }
+      previous = newNode;
+    }
+    return this;
+  }
 }
