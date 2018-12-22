@@ -104,7 +104,7 @@ class BinarySearchTree {
     } else {
       let previous = this.root;
       while (previous) {
-        if (newNode.value > value) {
+        if (newNode.value < previous.value) {
           previous = previous.left;
         } else {
           previous = previous.right;
