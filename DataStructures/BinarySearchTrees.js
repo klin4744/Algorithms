@@ -107,6 +107,7 @@ class BinarySearchTree {
       // We can set any statement here to loop that is true, I used while previous is true which is always true, we will break out of looping with the break keyword
       while (previous) {
         // If the value of the new node is less than the current node, then we either traverse down the left of the list, or we set the .left of the node to the new node. We do the second case if and only if the .left property is null. We cannot trasverse directly until we hit null because then we will end up just setting null to the node instead of appending to the list
+        if ((value = previous.value)) return;
         if (newNode.value < previous.value) {
           if (!previous.left) {
             previous.left = newNode;
@@ -127,5 +128,19 @@ class BinarySearchTree {
     }
     // Finally return the binary search tree
     return this;
+  }
+  // Find searches to see if a value is within the Binary Search Tree
+  find(value) {
+    let current = this.root;
+    while (current) {
+      if (current.value === value) {
+        return true;
+      } else if (value > current.value) {
+        current = current.right;
+      } else if (value < current.value) {
+        current = current.left;
+      }
+    }
+    return false;
   }
 }
