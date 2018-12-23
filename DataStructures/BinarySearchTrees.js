@@ -131,10 +131,13 @@ class BinarySearchTree {
   }
   // Find searches to see if a value is within the Binary Search Tree
   find(value) {
+    // Istantiate a variable that marks our current location as we traverse the list, we always start at the loop
     let current = this.root;
+    // Since current tracks our location, it will hit null when it finishes traversing the tree because a node's left/right property at the end will be equal to null
     while (current) {
+      // We will exit the loop and return true if the value is found, otherwise we move down either the right or left of the tree based on whether the value is greater or less
       if (current.value === value) {
-        return true;
+        return true, node;
       } else if (value > current.value) {
         current = current.right;
       } else if (value < current.value) {
@@ -144,3 +147,15 @@ class BinarySearchTree {
     return false;
   }
 }
+
+// Big O of BSTs
+
+// Insertion - O(log n)
+// Searching - O(log n)
+
+// If we double the number of nodes, we only need to take one extra step
+// This is REALLY good for searching and insertion
+// This is possible because we essentially split the maximum numbers we have to look at by 2 every iteration!
+
+// O(log n) however isnt ALWAYS guaranteed, you can have a tree that is basically a linked list where every node is greater than its parent, or less than its parent. This makes the complexity O(n) since the tree is basically a sinlgy linked list!
+// This is avoidable by choosing a different node instead of the extrema
