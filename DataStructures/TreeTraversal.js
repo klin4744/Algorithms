@@ -85,6 +85,7 @@ class Node {
 // visited: [10,6,15,3,8,20]
 
 // attemp
+// Go to line 133
 class BinarySearchTree {
   constructor() {
     this.root = null;
@@ -146,5 +147,35 @@ class BinarySearchTree {
       }
     }
     return data;
+  }
+  ////////////////////////
+  // Depth First Search //
+  ///////////////////////
+
+  // Visit vertical nodes before visiting any sibling nodes
+
+  // PreOrder DFS //
+  // Visit the root first, then traverse the left and move towards the right
+  // Example
+  //               10
+  //            6      15
+  //          3   8       20
+  // first, 10, then move down to 6, then down to 3 (the leftmost column), then collect the node at 8
+  // finally do right side, [15,20]
+  // [10,6,3,8,15,20]
+  DFS_PO() {
+    let visited = [],
+      current = this.root;
+    function helper(node) {
+      visited.push(node.value);
+      if (node.left) {
+        helper(node.left);
+      }
+      if (node.right) {
+        helper(node.right);
+      }
+      return visited;
+    }
+    return helper(current);
   }
 }
