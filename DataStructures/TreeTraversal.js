@@ -163,7 +163,7 @@ class BinarySearchTree {
   // first, 10, then move down to 6, then down to 3 (the leftmost column), then collect the node at 8
   // finally do right side, [15,20]
   // [10,6,3,8,15,20]
-  DFS_PO() {
+  DFSPreOrder() {
     let visited = [],
       current = this.root;
     function helper(node) {
@@ -177,5 +177,28 @@ class BinarySearchTree {
       return visited;
     }
     return helper(current);
+  }
+  // Post order DFS
+  // Start at 10, go to the bottom left most node first, add the left most node, then add the right node on the left end, then move up the list, do the right side, then finally post the root node.
+  // Example
+  //               10
+  //            6      15
+  //          3   8       20
+  // The root goes in last, bottom first
+  // [3,8,6,10,20,15]
+  DFSPostOrder() {
+    let visited = [],
+      current = this.root;
+    function traverse(node) {
+      if (node.left) {
+        traverse(node.left);
+      }
+      if (node.right) {
+        traverse(node.right);
+      }
+      visited.push(node.value);
+    }
+    traverse(current);
+    return visited;
   }
 }
