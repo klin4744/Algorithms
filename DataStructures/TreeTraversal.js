@@ -201,4 +201,32 @@ class BinarySearchTree {
     traverse(current);
     return visited;
   }
+  // DFS in order traverses the entire left first, the moves to the right
+  // Example
+  //               10
+  //            6      15
+  //          3   8       20
+  // The root goes in last, bottom first
+  // the first left column only contains 3
+  // [3]
+  // second leftmost column contains 6
+  // [3,6]
+  // third leftmost column contains 8
+  // [3,6,8]
+  // so on
+  // [3,6,8,10,15,20]
+  DFSInOrder() {
+    let visited = [];
+    function traverse(node) {
+      if (node.left) {
+        traverse(node.left);
+      }
+      visited.push(node.value);
+      if (node.right) {
+        traverse(node.right);
+      }
+    }
+    traverse(this.root);
+    return visited;
+  }
 }
