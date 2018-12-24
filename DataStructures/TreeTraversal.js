@@ -230,3 +230,25 @@ class BinarySearchTree {
     return visited;
   }
 }
+// BFS vs DFS
+// Which one is better?
+// Bredth vs Depth
+// Which one to use completely depends on a tree
+// If we have a fully loaded tree (all nodes are full), if we have ALOT of data, breadth first is not great because we use queues. This becomes an issue on space. If the tree is wider than it is deep, USE DEPTH FIRST otherwise use Breath First!
+// Both have the same time complexity! Space complexity is dependent on the shape and size of the tree
+
+// DFS types
+// DFS - In Order
+// Used commonly with Binary Search Trees because doing so will return a datastrucutre that is in order
+
+// DFS - Pre Order
+// Can be used to "export" a tree structure so that it is easily reconstructred or copied.
+// Root gets stored first, so we can easily reconstruct the tree
+
+// Does not REALLY matter which type of DFS we use, bigger concern is DFS vs BFS
+
+// Recap
+// Trees are non-linear data strcutrues that contain a root and child nodes
+// Binary Trees can have values of any type, but at most two children for each parent
+// Binary Search Trees are a more specific version of binary trees where every node to the left of a parent is less than it's value and every node to the right is greater. BSTs are SORTED, that means the data in it must be comparable.
+// We can search through trees using BFS and DFS
