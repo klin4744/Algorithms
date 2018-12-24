@@ -54,19 +54,15 @@ const MaxBinaryHeap = [];
 // Comapre node to parent, if it is larger than its parent, bubble it up!
 
 function insert(maxHeap, value) {
-  if (maxHeap.length < 3) {
-    maxHeap.push(value);
-  } else {
-    let currentIndex = maxHeap.length;
-    let parent = Math.floor((currentIndex - 1) / 2);
-    maxHeap.push(value);
-    while (maxHeap[currentIndex] > maxHeap[parent]) {
-      let temp = maxHeap[parent];
-      maxHeap[parent] = maxHeap[currentIndex];
-      maxHeap[currentIndex] = temp;
-      currentIndex = parent;
-      parent = Math.floor((currentIndex - 1) / 2);
-    }
+  let currentIndex = maxHeap.length;
+  let parent = Math.floor((currentIndex - 1) / 2);
+  maxHeap.push(value);
+  while (maxHeap[currentIndex] > maxHeap[parent]) {
+    let temp = maxHeap[parent];
+    maxHeap[parent] = maxHeap[currentIndex];
+    maxHeap[currentIndex] = temp;
+    currentIndex = parent;
+    parent = Math.floor((currentIndex - 1) / 2);
   }
   return maxHeap;
 }
