@@ -66,3 +66,62 @@ function insert(maxHeap, value) {
   }
   return maxHeap;
 }
+
+// Creating a class for binary heaps
+class maxBinaryHeap {
+  constructor() {
+    this.values = [];
+  }
+  insert(value) {
+    let maxHeap = this.values;
+    let currentIndex = maxHeap.length;
+    let parent = Math.floor((currentIndex - 1) / 2);
+    maxHeap.push(value);
+    while (maxHeap[currentIndex] > maxHeap[parent]) {
+      let temp = maxHeap[parent];
+      maxHeap[parent] = maxHeap[currentIndex];
+      maxHeap[currentIndex] = temp;
+      currentIndex = parent;
+      parent = Math.floor((currentIndex - 1) / 2);
+    }
+    this.values = maxHeap;
+    return this;
+  }
+  // ExtractMax - Removing from a heap
+  // Removes the root
+  // Replace with the most recently added
+  // Adjust by sinking down
+
+  // Sink down - the procedure for deleting the root from the heap (effectively extracting the maximum element in a max-heap) or the minumum element in a min-heap) and restoring the properties.
+
+  // Example
+  // [41,39,33,18,27,12]
+  // Remove the root (41), and swap with the most recently added element
+  // [12,39,33,18,27]
+  // Bubble/sink down to the right poition, maximum number should be the new root! Compare 12 to it's children 39 and 33, check which one is larger and swap that one with 12 unless 12 isnt less than the largest child node
+  // [39,12,33,18,27]
+  // Now compare 12 with both of it's new children nodes and swap it with the larger node unless both nodes are smaller
+  extractMax() {
+    let values = this.values;
+    // For time complexity reasons, I swap first then remove the old root node
+    values[0] = values[values.length - 1];
+    values.pop();
+    // instatiate child nodes
+    let child1, child2, indexToSwap;
+    let currentIndex = 0;
+    while (true) {
+      child1 = currentIndex * 2 + 1;
+      child2 = currentIndex * 2 + 2;
+      if (!values[child1]) break;
+      if (values[currentNode] >= Math.max(values[child1], values[child2])) {
+        break;
+      }
+      indexToSwap = values[child1] > values[child2] ? child1 : child2;
+      let oldNode = values[currentIndex];
+      values[currentIndex] = values[indexToSwap];
+      values[indexToSwap] = oldNode;
+      currentIndex = indexToSwap;
+    }
+    return this;
+  }
+}
