@@ -103,25 +103,29 @@ class maxBinaryHeap {
   // Now compare 12 with both of it's new children nodes and swap it with the larger node unless both nodes are smaller
   extractMax() {
     let values = this.values;
+    if (values.length === 0) return;
+    let max = values[0];
     // For time complexity reasons, I swap first then remove the old root node
     values[0] = values[values.length - 1];
     values.pop();
+    console.log(values);
     // instatiate child nodes
     let child1, child2, indexToSwap;
     let currentIndex = 0;
     while (true) {
       child1 = currentIndex * 2 + 1;
       child2 = currentIndex * 2 + 2;
-      if (!values[child1]) break;
-      if (values[currentNode] >= Math.max(values[child1], values[child2])) {
+      if (values[currentIndex] >= Math.max(values[child1], values[child2])) {
         break;
       }
       indexToSwap = values[child1] > values[child2] ? child1 : child2;
+      if (!values[indexToSwap]) break;
       let oldNode = values[currentIndex];
       values[currentIndex] = values[indexToSwap];
       values[indexToSwap] = oldNode;
       currentIndex = indexToSwap;
     }
-    return this;
+    this.values = values;
+    return max;
   }
 }
