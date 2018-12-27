@@ -41,18 +41,21 @@ class PriorityQueue {
   }
   Enqueue(value, priority) {
     let node = new Node(value, priority);
-    let minHeap = this.values;
-    let currentIndex = minHeap.length;
+    let currentIndex = this.values.length;
     let parent = Math.floor((currentIndex - 1) / 2);
-    minHeap.push(node);
-    while (minHeap[currentIndex].priority < minHeap[parent].priority) {
-      let temp = minHeap[parent];
-      minHeap[parent] = minHeap[currentIndex];
-      minHeap[currentIndex] = temp;
-      currentIndex = parent;
-      parent = Math.floor((currentIndex - 1) / 2);
+    this.values.push(node);
+    if (this.values[parent]) {
+      while (
+        this.values[currentIndex].priority < this.values[parent].priority
+      ) {
+        let temp = this.values[parent];
+        this.values[parent] = this.values[currentIndex];
+        this.values[currentIndex] = temp;
+        currentIndex = parent;
+        parent = Math.floor((currentIndex - 1) / 2);
+        if (currentIndex === 0) break;
+      }
     }
-    this.values = minHeap;
     return this;
   }
   Dequeue() {
