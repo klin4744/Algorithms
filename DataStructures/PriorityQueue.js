@@ -69,14 +69,22 @@ class PriorityQueue {
     while (true) {
       child1 = currentIndex * 2 + 1;
       child2 = currentIndex * 2 + 2;
-      if (
-        values[currentIndex].priority <=
-        Math.min(values[child1].priority, values[child2].priority)
-      ) {
-        break;
+      if (!values[child1]) break;
+      if (values[child2]) {
+        if (
+          values[currentIndex].priority <=
+          Math.min(values[child1].priority, values[child2].priority)
+        ) {
+          break;
+        }
+        indexToSwap =
+          values[child1].priority < values[child2].priority ? child1 : child2;
+      } else {
+        indexToSwap =
+          values[currentIndex].priority < values[child1].priority
+            ? false
+            : child1;
       }
-      indexToSwap =
-        values[child1].priority < values[child2].priority ? child1 : child2;
       if (!values[indexToSwap]) break;
       let oldNode = values[currentIndex];
       values[currentIndex] = values[indexToSwap];
