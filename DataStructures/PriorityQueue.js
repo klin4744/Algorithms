@@ -102,4 +102,4 @@ class PriorityQueue {
 // Again much more effective at inserting nodes or values as compared to arrays
 // It is log n because each time we double the amount of nodes aka add a new level to the tree, we only need to add one additional comparison or iteration.
 // For regular binary trees, we could have had a tree that was a singly linked list represented as a tree, for heaps this is not the case. All the leaves of the heap must be filled before moving down a level.
-// Binary heaps are not really made to be searchable, that is why O(n) is not great. We can't make a decision since sibling nodes don't have any relationship. We don't really know where to check so we have to check every single node.
+// Binary heaps are not really made to be searchable, that is why O(n) is not great. We can't make a decision since sibling nodes don't have any relationship. We don't really know where to check so we may have to check every single node, usually we will only have to check half of the nodes but there is no guarantee.
