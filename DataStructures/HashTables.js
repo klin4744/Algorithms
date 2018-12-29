@@ -149,10 +149,11 @@ class HashTable {
   // Get accepts a key, hashes the key and finds the value of that key
   get(key) {
     let index = this._hash(key);
-    if (!this.keyMap[index]) return;
-    for (let i = 0; i < this.keyMap[index].length; i++) {
-      if (this.keyMap[index][i][0] === key) {
-        return this.keyMap[index][i];
+    if (this.keyMap[index]) {
+      for (let i = 0; i < this.keyMap[index].length; i++) {
+        if (this.keyMap[index][i][0] === key) {
+          return this.keyMap[index][i];
+        }
       }
     }
     return;
