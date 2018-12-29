@@ -119,3 +119,42 @@ function hash(key, arrayLen) {
 // Even though the hash for salmon is 2, we notice that 2 has a value, so we skip over 2 and place it into the next open slot, 3.
 
 // We will use separate chaining because it allows us to store more items than the length of our array.
+
+// Building a HashTable class
+
+class HashTable {
+  constructor(size = 53) {
+    // Constructor accepts a size and creates a new array of the passed size or 53 if no size is passed
+    this.keyMap = new Array(size);
+  }
+  _hash(key) {
+    let total = 0;
+    let primeNumber = 31;
+    for (i = 0; i < Math.min(key.length, 100); i++) {
+      total =
+        (total * primeNumber + key.charCodeAt(i) - 96) % this.keyMap.length;
+    }
+    return total;
+  }
+  // Set accepts a key and a value, hashes the key, then stores the key-value pair in the hash table via separate chaining.
+  // Since we implement separate chaining, we need to check if the indice already has a value, if it does we have to add it onto a nested structure
+  set(key, value) {
+    let index = this._hash(key);
+    if (!this.keyMap[index]) {
+      this.keyMap[index] = [[key, value]];
+    } else {
+      this.keyMap[index].push([key, value]);
+    }
+  }
+  // Get accepts a key, hashes the key and finds the value of that key
+  get(key) {
+    let index = this._hash(key);
+    if (!this.keyMap[index]) return;
+    for (let i = 0; i < this.keyMap[index].length; i++) {
+      if (this.keyMap[index][i][0] === key) {
+        return this.keyMap[index][i];
+      }
+    }
+    return;
+  }
+}
