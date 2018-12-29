@@ -78,3 +78,44 @@ function hash(key, arrayLen) {
 // Only hashes strings (we won't worry about this)
 // Not constant time, is O(n) or linear
 // Could be a little more random, our data can really get clustered easily aka multiple strings can return the same index, we want to make out data a bit more scattered.
+
+// Lets make this hash better:
+function hash(key, arrayLen) {
+  let total = 0;
+  let primeNumber = 31;
+  for (i = 0; i < Math.min(key.length, 100); i++) {
+    total = (total * primeNumber + key.charCodeAt(i) - 96) % arrayLen;
+  }
+  return total;
+}
+
+// The Math min reduces our loop times. We will only loop 100 times at most. This saves speed and is fine for most data sets, if all data sets start with the same 100 first values, we might consider increasing the limit or iterating from the end
+
+// Hash functions like to take advantage of prime numbers, they help avoid colisions. Prime numbers also are great from array lengths to avoid collisions.
+// Changing a number to a prime number reduces hash collisions tremendously, especially for larger arrays
+
+// This solution deals with collisons better but doesn't remove collisions entirely, how do we handle collisions?
+
+// 1. Separate Chaining
+// With separate chaining, at each index in our array we store values using a more sophisticated data structure (e.g. an array or a linked list).
+
+// This allows us to store multiple key-value pairs at the same index.
+
+// For example,
+// darkblue ---- hash ----> 2
+// salmon   ---- hash ----> 2
+//                            2
+//      [["darkblue","#00008b"],["salmon","#fa9072"]]
+// If we want the value for salmon now, we type salmon into our hash function, it gives us index 2. We then go to our array and look at index 2 then loop it until we find salmon.
+
+// 2. Linear Probing
+// With linear probing, when we find a collison, we search through the array to find the next empty slot.
+
+// For example
+//  darkblue ---- hash ----> 2
+// salmon   ---- hash ----> 2
+//         2                          3
+//["darkblue","#00008b"]    ["salmon","#fa9072"]]
+// Even though the hash for salmon is 2, we notice that 2 has a value, so we skip over 2 and place it into the next open slot, 3.
+
+// We will use separate chaining because it allows us to store more items than the length of our array.
