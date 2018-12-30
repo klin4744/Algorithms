@@ -180,10 +180,14 @@ class HashTable {
     let returnArray = [];
     this.keyMap.forEach(items => {
       if (items.length === 1) {
-        returnArray.push(items[0][1]);
+        if (!returnArray.includes(items[0][1])) {
+          returnArray.push(items[0][1]);
+        }
       } else {
         items.forEach(item => {
-          returnArray.push(item[1]);
+          if (!returnArray.includes(item[1])) {
+            returnArray.push(item[1]);
+          }
         });
       }
     });
