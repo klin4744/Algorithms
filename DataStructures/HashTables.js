@@ -152,10 +152,41 @@ class HashTable {
     if (this.keyMap[index]) {
       for (let i = 0; i < this.keyMap[index].length; i++) {
         if (this.keyMap[index][i][0] === key) {
-          return this.keyMap[index][i];
+          return this.keyMap[index][i][1];
         }
       }
     }
     return;
+  }
+  // Keys loops through the hash table array and returns an array of keys in the table
+  // Keep in mind we might have multiple data
+  keys() {
+    if (this.keyMap.length === 0 || !this.keyMap) return;
+    let returnArray = [];
+    this.keyMap.forEach(items => {
+      if (items.length === 1) {
+        returnArray.push(items[0][0]);
+      } else {
+        items.forEach(item => {
+          returnArray.push(item[0]);
+        });
+      }
+    });
+    return returnArray;
+  }
+  // values loops through the hash table array and returns an array of values in the table
+  values() {
+    if (this.keyMap.length === 0 || !this.keyMap) return;
+    let returnArray = [];
+    this.keyMap.forEach(items => {
+      if (items.length === 1) {
+        returnArray.push(items[0][1]);
+      } else {
+        items.forEach(item => {
+          returnArray.push(item[1]);
+        });
+      }
+    });
+    return returnArray;
   }
 }
