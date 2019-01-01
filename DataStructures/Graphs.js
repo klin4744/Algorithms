@@ -67,3 +67,59 @@
 //    E: ["B","F"] ,
 //    F: ["B","F"]
 // }
+
+// Adjacency List vs Matrix Big O
+// Operation         List           Matrix
+// Add Vertex        O(1)           O(V^2)
+// Add Edge          O(1)           O(1)
+// Remove Vertex     O(V+E)         O(V^2)
+// Remove Edge       O(E)           O(1)
+// Query             O(V+E)         O(1)
+// Storage           O(V+E)         O(V^2)
+
+// Adjacency lists take up less space (in sparce graphs) because they only include links
+// Are faster to iterate over all edges because they only store the direct connects whereas matrices store empty links as well
+// Lists are slower to lookup specific edges (query) because we'd have to iterate through all the items in an adjacency lists, For matrices all we'd have to do is directly access the slot of interest and see if its a 0 or a 1.
+
+// We will create an adjacency list because they are more common the matrixes and because they are more efficient with storing data. This is very important in the real world because storage is a huge problem with bigger data and matrices also will add extra data that isn't connected which exponentially increasing the amount of data.
+
+// Creating an adjacency list graph
+// We will use the object notation and create and undirected graph
+
+class Graph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+  // Adds a key to the list if the key does not already exist and sets its value to an empty array to store edges
+  addVertex(vertex) {
+    !this.adjacencyList[vertex]
+      ? (this.adjacencyList[vertex] = [])
+      : console.log("Already Exists");
+  }
+  // Adds an edge to an existing vertex. Function takes two vertexs and connects them. Essentially we form a connection by pushing the vertex into another vertex's arrays. The arrays of each vertex holds the vertices it is connected to.
+  addEdge(v1, v2) {
+    if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return false;
+    this.adjacencyList[v1].push(v2);
+    this.adjacencyList[v2].push(v1);
+    return true;
+  }
+  removeEdge(v1, v2) {
+    if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return false;
+    this.adjacencyList[v1] = this.adjacencyList[v1].filter(edge => edge !== v2);
+    this.adjacencyList[v2] = this.adjacencyList[v2].filter(edge => edge !== v1);
+    return true;
+  }
+  removeVertex(vertex) {
+    if (!this.adjacencyList[vertex]) return false;
+    const keys = Object.keys(this.adjacencyList);
+    let target = {};
+    for (let iteration in keys) {
+      let key = keys[iteration];
+      this.removeEdge(key, vertex);
+      if (key !== vertex) {
+        target[key] = this.adjacencyList[key];
+      }
+    }
+    this.adjacencyList = target;
+  }
+}
