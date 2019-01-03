@@ -12,8 +12,10 @@ function climbingLeaderboard(scores, alice) {
       places.push(currentPlace);
     }
   }
+  alice.sort((a, b) => a - b);
+  let j = scores.length - 1;
   for (let i = 0; i < alice.length; i++) {
-    for (let j = 0; j < scores.length; j++) {
+    while (j >= 0) {
       if (alice[i] == scores[j]) {
         ans.push(places[j]);
         break;
@@ -26,6 +28,8 @@ function climbingLeaderboard(scores, alice) {
       } else if (alice[i] < scores[scores.length - 1]) {
         ans.push(places[places.length - 1] + 1);
         break;
+      } else {
+        j--;
       }
     }
   }
