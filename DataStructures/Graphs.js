@@ -129,3 +129,49 @@ class Graph {
 // For trees, there is only one path to a vertex, for bigger graphs, there are several paths to the vertex of interest, we also do not know where to start in a general graph.
 // We will need to specify some starting vertex in order to start traversing and set some kind of target then choose a path based on conditions we're given such as if the graph undirected/directed or if we're trying to optimize length, etc.
 // There are a ton of applications for graph traversal that it is commonly tested.
+
+// Depth first traversal //
+// Depth first really just means moving away from the root. However, there are no roots in graphs, so we have to choose some starting vertex, find that vertex's neighbors before we visit its sibiling. This means we can go to a neigbor node but then continue to move away from the starting node, aka continue to visit the children of the neighbor node, or more appropriately, the neighbors of the neighbor of the starting node, we will then go back and go as deep as we can in the other direction. We must remember which vertices we already visited!
+
+// DFS Pseudocode
+// Create a function called DFSRecursive that takes a vertex, make a base case to end recursion if the vertex passed is empty, otherwise build a results list and, if a vertex was visited, set its value to true
+
+// Note: Do not run this javaScript file without commenting out duplicate declarations, copy and paste them into a separate file or into chrome snippets.
+
+class Graph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+  // Adds a key to the list if the key does not already exist and sets its value to an empty array to store edges
+  addVertex(vertex) {
+    !this.adjacencyList[vertex]
+      ? (this.adjacencyList[vertex] = [])
+      : console.log("Already Exists");
+  }
+  // Adds an edge to an existing vertex. Function takes two vertexs and connects them. Essentially we form a connection by pushing the vertex into another vertex's arrays. The arrays of each vertex holds the vertices it is connected to.
+  addEdge(v1, v2) {
+    if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return false;
+    this.adjacencyList[v1].push(v2);
+    this.adjacencyList[v2].push(v1);
+    return true;
+  }
+  removeEdge(v1, v2) {
+    if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return false;
+    this.adjacencyList[v1] = this.adjacencyList[v1].filter(edge => edge !== v2);
+    this.adjacencyList[v2] = this.adjacencyList[v2].filter(edge => edge !== v1);
+    return true;
+  }
+  removeVertex(vertex) {
+    if (!this.adjacencyList[vertex]) return false;
+    const keys = Object.keys(this.adjacencyList);
+    let target = {};
+    for (let iteration in keys) {
+      let key = keys[iteration];
+      this.removeEdge(key, vertex);
+      if (key !== vertex) {
+        target[key] = this.adjacencyList[key];
+      }
+    }
+    this.adjacencyList = target;
+  }
+}
