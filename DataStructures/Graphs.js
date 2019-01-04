@@ -123,3 +123,9 @@ class Graph {
     this.adjacencyList = target;
   }
 }
+
+// Graph traversal
+// By graph traversal, we mean having the ability to visit every single vertex in a graph and, if we choose to edit visited vertices, append edges to them, or remove them.
+// For trees, there is only one path to a vertex, for bigger graphs, there are several paths to the vertex of interest, we also do not know where to start in a general graph.
+// We will need to specify some starting vertex in order to start traversing and set some kind of target then choose a path based on conditions we're given such as if the graph undirected/directed or if we're trying to optimize length, etc.
+// There are a ton of applications for graph traversal that it is commonly tested.
