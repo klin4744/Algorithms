@@ -193,9 +193,34 @@ class Graph {
           helper(list[vertex][i]);
         }
       }
-      return visited;
     }
     helper(vertex);
+    return results;
+  }
+  // For this solution, we will use an array for a stack.
+  DFSIterative(vertex) {
+    // s is a stack we created LIFO, Last in first out;
+    const s = [];
+    // push s into our stack
+    s.push(vertex);
+    // Create a results array and a visited object to check if the item has been visited already
+    const visited = {};
+    const results = [];
+    while (s.length > 0) {
+      // nextVertex is the last item in our stack, following LIFO, we take the last item put into our stack, out of our stack
+      let nextVertex = s.pop();
+      if (!visited[nextVertex]) {
+        // Store the vertex into results and label it as visited
+        results.push(nextVertex);
+        visited[nextVertex] = true;
+        // Loop through the vertice's siblings and if they have not been visited, push them into the stack
+        this.adjacencyList[nextVertex].forEach(sibling => {
+          if (!visited[sibling]) s.push(sibling);
+        });
+        // The while loop will continue to run if anything goes into our stack, and this forEach will repopulate our stack as long as there is something that has not been visited
+      }
+      // Note, the order is not the same as the recursive solution because the stack grows after our first vertex is ran, that means the last sibling of each vertex is dealt with first.
+    }
     return results;
   }
 }
