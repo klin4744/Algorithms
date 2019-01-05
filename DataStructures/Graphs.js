@@ -177,9 +177,13 @@ class Graph {
     this.adjacencyList = target;
   }
   DFSRecursive(vertex) {
+    // First create a results array which stores the vertices we visited
     const results = [];
+    // We also created a visited object to use as a test if we have already visited a vertex
     const visited = {};
+    // We will use a helper function so we must either bind the helper function to this in the constructor or set the adjacencyList equal to a variable, since this will not bind to it inside a helper.
     const list = this.adjacencyList;
+    // Our helper function takes a vertex, pushes that vertext into our results array, and adds it to our visited object. We then loop through our adjacency list for that specific vertex and check it's edges (siblings), if the sibling is already in our list, we simply ignore it and move on, otherwise we recursively call the helper again on the sibling, our base case will stop recursion if the vertex does not exist. Nothing will be passed into helper in this case if the loop finishes.
     function helper(vertex) {
       if (!vertex) return;
       results.push(vertex);
