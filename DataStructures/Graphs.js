@@ -138,6 +138,8 @@ class Graph {
 
 // Note: Do not run this javaScript file without commenting out duplicate declarations, copy and paste them into a separate file or into chrome snippets.
 
+// Line 179 will include code;
+
 class Graph {
   constructor() {
     this.adjacencyList = {};
@@ -173,5 +175,23 @@ class Graph {
       }
     }
     this.adjacencyList = target;
+  }
+  DFSRecursive(vertex) {
+    const results = [];
+    const visited = {};
+    const list = this.adjacencyList;
+    function helper(vertex) {
+      if (!vertex) return;
+      results.push(vertex);
+      visited[vertex] = true;
+      for (let i = 0; i < list[vertex].length; i++) {
+        if (!visited[list[vertex][i]]) {
+          helper(list[vertex][i]);
+        }
+      }
+      return visited;
+    }
+    helper(vertex);
+    return results;
   }
 }
