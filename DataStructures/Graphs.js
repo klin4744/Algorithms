@@ -223,4 +223,25 @@ class Graph {
     }
     return results;
   }
+  // Breadth First Search prioritizes visiting neighbors at the current depth before moving on to the next levels. So if our source's edges are B and D, we'd want to visit B and D first, not their childrent immediately.
+  BFS(vertex) {
+    const visited = {};
+    const results = [];
+    // Queue First in First Out, FIFO, use push and shift!
+    const queue = [];
+    let next;
+    visited[vertex] = true;
+    queue.push(vertex);
+    while (queue.length) {
+      next = queue.shift();
+      results.push(next);
+      for (let i = 0; i < this.adjacencyList[next].length; i++) {
+        if (!visited[this.adjacencyList[next][i]]) {
+          visited[this.adjacencyList[next][i]] = true;
+          queue.push(this.adjacencyList[next][i]);
+        }
+      }
+    }
+    return results;
+  }
 }
