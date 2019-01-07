@@ -146,20 +146,6 @@
 // Now we visited every node not E, so our shortest path is through F, We also know our exact path is
 // A => C = D = F => E from our previous structure
 
-class WeightedGraph {
-  constructor() {
-    this.adjacencyList = {};
-  }
-  addVertex(vertex) {
-    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
-  }
-  addEdge(vertex1, vertex2, weight) {
-    if (!vertex1 || !vertex2) return false;
-    this.adjacencyList[vertex1].push({ node: vertex2, weight });
-    this.adjacencyList[vertex2].push({ node: vertex1, weight });
-  }
-}
-
 // Psuedo code for the Algorithm, remember that we need to use a priority queue, we can do this by looking at the edge distances. We will create the priority queue below:
 
 class PriorityQueue {
@@ -180,4 +166,70 @@ class PriorityQueue {
     this.values.sort((a, b) => a.priority - b.priority);
   }
 }
-// Sorting here is O(N*log(N));
+// Sorting here is O(N*log(N)), better to use a Binary Heap for time efficiency.
+// - Create a function that accepts a starting and an ending vertex
+// - Create an object called distances and set each key to be every vertex in the adjacency list with value of infinity, except for the starting vertex which should have a value of 0
+// - After setting a value in the distances object, add each vertex with a priority of Infinity to the priority queue, except the starting vertex, which should have a priority of 0 because that's where we begin
+// - Create another object called previous and set each key to be every vertex in the adjacency list with a value of null
+// - Start looping as long as there is anything in the priority queue
+//   -Dequeue a vertex from the priority queue
+//   - If that vertex is the same length as the ending vertex, we are done
+//   -Otherwise loop through each value in the adjacency list at that vertex
+//     - Calculate the distance to that vertex from the starting vertex
+//     - If the distance is less than what is currently stored in our distances obj:
+//       - update the distances object with new lower distance
+//       - update the previous object to contain that vertex
+//       - enqueue the vertex with the total distance from the start node
+
+class WeightedGraph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  }
+  addEdge(vertex1, vertex2, weight) {
+    if (!vertex1 || !vertex2) return false;
+    this.adjacencyList[vertex1].push({ node: vertex2, weight });
+    this.adjacencyList[vertex2].push({ node: vertex1, weight });
+  }
+  findShortestDistance(start, end) {
+    const distances = {};
+    const previous = {};
+    const priorityQueue = new PriorityQueue();
+    const keys = Object.keys(this.adjacencyList);
+    let distance;
+    let current;
+    keys.forEach(vertex => {
+      if (vertex === start) {
+        distances[vertex] = 0;
+      } else {
+        distances[vertex] = Infinity;
+      }
+      if (distances[vertex] === Infinity) {
+        priorityQueue.enqueue(vertex, distances[vertex]);
+      }
+      previous[vertex] = null;
+    });
+    while (priorityQueue.values.length) {
+      current = priorityQueue.dequeue();
+      if (current === end) break;
+      console.log(current.val);
+      this.adjacencyList[current.val].forEach(edge => {
+        if (distances[edge.node]) {
+          if (distances[edge.node] === Infinity) {
+            distance = edge.weight;
+          } else {
+            distance = edge.weight + distance[edge.node];
+          }
+          if (distance < distance[edge.node]) {
+            distance[edge.node] = distance;
+            previous[edge.node] = current.val;
+            priorityQueue.enqueue(edge.node, distance);
+          }
+        }
+      });
+    }
+    return distance;
+  }
+}
