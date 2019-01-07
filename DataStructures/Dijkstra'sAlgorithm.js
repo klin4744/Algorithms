@@ -13,21 +13,21 @@
 
 // Writing a Weighted Graph //
 // We can make our graph weighted by just adding a comma and the weight
-
-class WeightedGraph {
-  constructor() {
-    this.adjacencyList = {};
-  }
-  addVertex(vertex) {
-    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
-  }
-  addEdge(vertex1, vertex2, weight) {
-    if (!vertex1 || !vertex2) return false;
-    this.adjacencyList[vertex1].push({ node: vertex2, weight });
-    this.adjacencyList[vertex2].push({ node: vertex1, weight });
-  }
-}
-
+/////////////////////////////////////////
+// class WeightedGraph {
+//   constructor() {
+//     this.adjacencyList = {};
+//   }
+//   addVertex(vertex) {
+//     if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+//   }
+//   addEdge(vertex1, vertex2, weight) {
+//     if (!vertex1 || !vertex2) return false;
+//     this.adjacencyList[vertex1].push({ node: vertex2, weight });
+//     this.adjacencyList[vertex2].push({ node: vertex1, weight });
+//   }
+// }
+/////////////////////////////////////////////////
 // Basics of Dijkstra's
 // Every time we look to visit a new node, we pick the node with the smallet known distance to visit first.
 // Once we've moved to the node we're going to visit, we look at each of its neighbors
@@ -145,3 +145,39 @@ class WeightedGraph {
 // Visited = [A,C,B,D,F]
 // Now we visited every node not E, so our shortest path is through F, We also know our exact path is
 // A => C = D = F => E from our previous structure
+
+class WeightedGraph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  }
+  addEdge(vertex1, vertex2, weight) {
+    if (!vertex1 || !vertex2) return false;
+    this.adjacencyList[vertex1].push({ node: vertex2, weight });
+    this.adjacencyList[vertex2].push({ node: vertex1, weight });
+  }
+}
+
+// Psuedo code for the Algorithm, remember that we need to use a priority queue, we can do this by looking at the edge distances. We will create the priority queue below:
+
+class PriorityQueue {
+  constructor() {
+    this.values = [];
+  }
+  enqueue(val, priority) {
+    // Pushes an object which stores the value and priority of a node into our values list or or queue then re-sorts the list
+    this.values.push({ val, priority });
+    this.sort;
+  }
+  dequeue() {
+    // Removes first item from the queue (FIFO)
+    return this.values.shift();
+  }
+  sort() {
+    // Sorts by placing the items with a smaller magnitude priority value to the front of the queue
+    this.values.sort((a, b) => a.priority - b.priority);
+  }
+}
+// Sorting here is O(N*log(N));
