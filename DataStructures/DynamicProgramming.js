@@ -17,3 +17,17 @@
 // An example of non-overlapping subproblems
 // mergeSort for example has several sub problems, we break down a larger array we want to sort to many smaller items then merge them back together in a sorted list. This has subproblems but we are not using the same pieces of reusing the same solution here at all to sort; everything is unique. This is not overlapping!
 // Of course we can have special cases with evenly spaced repeat data such as 10 24 10 24, which will result in overlap.
+
+// Optimal Substructure
+// A problem is said to have optimal substructure if an optimal solution can be constructed from optimal solutions of its subproblems.
+// Again fibonacci is a good example here because we need to calculate fibonnaci 3 to solve for fibonacci 5.
+// Think of shortest path from a graph, we can find the shortest path from two unlinked nodes by using the shortest paths of smaller linked items.
+// An example of something that doesnt work is longest simple path (cant repeat)
+// A   -     B     -      D
+//           C
+// Longest paths:
+// A to C:  A -> B -> C
+// C to D:  C -> B -> D
+// A to D: If we follow optimal substructure, we can combine our solution to the last two longest paths to calculate to through D aka: A -> B -> C -> B -> D, this however doesnt match the simple criteria since we have a repeat of B. This does not match optimal substructure since our other optimal solutions cant be used to calculate our final optimal solution: A -> B -> D.
+
+//
