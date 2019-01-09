@@ -30,4 +30,42 @@
 // C to D:  C -> B -> D
 // A to D: If we follow optimal substructure, we can combine our solution to the last two longest paths to calculate to through D aka: A -> B -> C -> B -> D, this however doesnt match the simple criteria since we have a repeat of B. This does not match optimal substructure since our other optimal solutions cant be used to calculate our final optimal solution: A -> B -> D.
 
-//
+// Writing a recursive solution:
+
+// Since the fibonacci sequence exibits both features: optimal substructures, and overlapping subproblems. Lets write a recursive dynamic programming solution for the fibonacci sequence!
+
+// What we know: fib(n) = fib(n-1) + fib(n-2)
+// fib(2) is 1
+// fib(1) is 1
+function fib(n) {
+  if (n <= 2) return 1;
+  return fib(n - 1) + fib(n - 2);
+}
+
+// How does this work?
+// Example with fib(5)
+// Since our base case only returns a value if n === 1 or n === 2, we continue to add to our call stack until we hit those cases
+// Our first call:
+// return fib(4) + fib(3)
+// fib(3) goes on call stack
+// fib(3) returns fib(2) + fib(1)
+// fib(1) gets put on call stack and returns 1
+// fib(2) + 1, fib(2) gets executed and returns 1
+// fib(3) now finises execution since it has the values for fib(2) and fib(1), it returns 2
+// fib(4) now executes and needs the value for fib(3) and fib(2), we already have these values but they will still execute all the way to base case. When fib 4 finishes running fib(5) returns a value;
+
+// This solution is nice and works, but it is REALLY slow. Just for fib(5), we have 8 calls, at fib(6) we have 14 calls, fib(7) has 24 calls. This is O(2^n) which is REALLY not good.
+
+// The problem is we are constantly repeating steps. When we calc fib(5), we calculate fib(3) twice. If we scale this up, there is TONS of repetition.
+
+// What if we could remember old values?
+
+// Memoization - storing answers to repeated subproblems in some kind of datastructure, so we can use it later.
+function fib(n, memo = []) {
+  if (memo[n] !== undefined) return memo[n];
+  if (n <= 2) return 1;
+  let ans = fib(n - 1, memo) + fib(n - 2, memo);
+  memo[n] = ans;
+  return ans;
+}
+// We now have added a mechanism to store old answers and call them if we see them again! The way our function is setup, we recursively call the biggest call chain first fib(n-1), this means we will calculate all the smaller fibonacci numbers we need after the first half completes!
