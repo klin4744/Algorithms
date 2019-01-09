@@ -69,3 +69,6 @@ function fib(n, memo = []) {
   return ans;
 }
 // We now have added a mechanism to store old answers and call them if we see them again! The way our function is setup, we recursively call the biggest call chain first fib(n-1), this means we will calculate all the smaller fibonacci numbers we need after the first half completes!
+
+// Time complexity of memoization solution: Roughly   O(n).
+// This is a HUGE improvement from the non-memoization iteration of this solution.
