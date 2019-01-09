@@ -152,18 +152,60 @@ class PriorityQueue {
   constructor() {
     this.values = [];
   }
-  enqueue(val, priority) {
-    // Pushes an object which stores the value and priority of a node into our values list or or queue then re-sorts the list
-    this.values.push({ val, priority });
-    this.sort();
+  enqueue(value, priority) {
+    let node = new Node(value, priority);
+    let currentIndex = this.values.length;
+    let parent = Math.floor((currentIndex - 1) / 2);
+    this.values.push(node);
+    if (this.values[parent]) {
+      while (
+        this.values[currentIndex].priority < this.values[parent].priority
+      ) {
+        let temp = this.values[parent];
+        this.values[parent] = this.values[currentIndex];
+        this.values[currentIndex] = temp;
+        currentIndex = parent;
+        parent = Math.floor((currentIndex - 1) / 2);
+        if (currentIndex === 0) break;
+      }
+    }
+    return this;
   }
   dequeue() {
-    // Removes first item from the queue (FIFO)
-    return this.values.shift();
-  }
-  sort() {
-    // Sorts by placing the items with a smaller magnitude priority value to the front of the queue
-    this.values.sort((a, b) => a.priority - b.priority);
+    let values = this.values;
+    if (values.length === 0) return;
+    let max = values[0];
+    values[0] = values[values.length - 1];
+    values.pop();
+    let child1, child2, indexToSwap;
+    let currentIndex = 0;
+    while (true) {
+      child1 = currentIndex * 2 + 1;
+      child2 = currentIndex * 2 + 2;
+      if (!values[child1]) break;
+      if (values[child2]) {
+        if (
+          values[currentIndex].priority <=
+          Math.min(values[child1].priority, values[child2].priority)
+        ) {
+          break;
+        }
+        indexToSwap =
+          values[child1].priority < values[child2].priority ? child1 : child2;
+      } else {
+        indexToSwap =
+          values[currentIndex].priority < values[child1].priority
+            ? false
+            : child1;
+      }
+      if (!values[indexToSwap]) break;
+      let oldNode = values[currentIndex];
+      values[currentIndex] = values[indexToSwap];
+      values[indexToSwap] = oldNode;
+      currentIndex = indexToSwap;
+    }
+    this.values = values;
+    return max;
   }
 }
 // Sorting here is O(N*log(N)), better to use a Binary Heap for time efficiency.
