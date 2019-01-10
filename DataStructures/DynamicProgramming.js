@@ -72,3 +72,24 @@ function fib(n, memo = []) {
 
 // Time complexity of memoization solution: Roughly   O(n).
 // This is a HUGE improvement from the non-memoization iteration of this solution.
+
+// Tabulation - A bottom up approach
+
+// We've current been working from top-down, meaning we've been starting at fib(7) then moving down. Starting from the top then moving down.
+// AKA starting with what we're trying to find and then moving down
+
+// There is another approach to this that is innately bottom-up called tabulation. Tabulation stores the result of a previous result in a "table" (usually an array). This is usually done with iteration and can produce a better space complexity than our top-down approach.
+
+// Tabulated fibonnaci example:
+
+function fib(n) {
+  if (n <= 2) return 1;
+  let fibNums = [0, 1, 1];
+  for (let i = 3; i <= n; i++) {
+    fib[i] = fibNums[i - 1] + fibNums[i - 2];
+  }
+  return fibNums[n];
+}
+// In this case, we are essentially building the fibonacci sequence in an array from the bottom up until we reach whatever n is, then we return the fibonacci number at n. We initialize it with the base few numbers. This follows our dynamic programming principles because we are solving multiple smaller problems aka calculating the fibonacci numbers at new indexes, and there is overlap because we use the old sequence numbers to calculate new ones.
+
+// This example could also be potentially better than the recursive solution because it doesn't really on call stacks. If we plug in a certain number in the recursive solution, we will take up too much memory space aka cause a stack overflow. Iteration will not cause a stack overflow.
