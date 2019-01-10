@@ -51,4 +51,13 @@ class SinglyLinkedList {
     this.length--;
     return removed;
   }
+  // Create a get function which finds a node at a specified index in a singly linked list
+  get(idx) {
+    if (!this.length || idx >= this.length) return null;
+    let current = this.head;
+    for (let i = 0; i < idx; i++) {
+      current = current.next;
+    }
+    return current.val;
+  }
 }
