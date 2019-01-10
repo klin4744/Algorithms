@@ -29,4 +29,26 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+  // Create a pop function that removes a node at the end of the singlyLinkedList. It should return the node removed
+  pop() {
+    // Check the edge case if empty list;
+    if (this.length === 0) return;
+    let removed = this.tail;
+    // We have to traverse the list until we reach the node right before the tail, lets start at the head
+    if (!this.head.next) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      let current = this.head;
+      while (current.next !== this.tail) {
+        // If the next property of the tail is not equal to the tail, just continue to move down the list
+        current = current.next;
+      }
+      // Set the next property of the node right before the tail to null, severing its link to the tail, then set the tail pointer to the current node, decrement the length and return the removed node;
+      current.next = null;
+      this.tail = current;
+    }
+    this.length--;
+    return removed;
+  }
 }
